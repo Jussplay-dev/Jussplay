@@ -1,0 +1,50 @@
+.customCursor {
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  position: absolute;
+  padding: 0.3rem;
+  background-color: #fff;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  @media screen and (max-width: 720px) {
+    display: none;
+  }
+}
+
+.hover {
+  transform: scale(1.5);
+}
+
+/* author: https://codepen.io/HighFlyer/pen/vYqvRWV
+Thea
+ */
+//  :root {
+//   --cursor-size: 28px;
+//   --bg-color: #fff;
+// }
+
+// #cursor {
+//   position: absolute;
+//   top: calc(var(--cursor-size) * -0.5);
+//   left: calc(var(--cursor-size) * -0.5);
+//   pointer-events: none;
+//   mix-blend-mode: difference;
+//   display: none;
+//   //z-index: 1000;
+// }
+
+// .cursorCircle {
+//   position: absolute;
+//   //top: 0;
+//   //left: 0;
+//   width: var(--cursor-size);
+//   height: var(--cursor-size);
+//   border-radius: 50%;
+//   background-color: #fff;
+//   //transform-origin: center center;
+//   mix-blend-mode: difference;
+//   z-index: 1000;
+// }

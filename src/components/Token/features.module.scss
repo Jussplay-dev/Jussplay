@@ -1,0 +1,149 @@
+.features {
+  padding: 0 30px 40px 30px;
+  background-color: #000;
+
+  h2 {
+    color: white;
+    margin-bottom: 40px;
+  }
+  h2,
+  p {
+    font-family: SGrotReg;
+  }
+
+  .featuresBox {
+    display: flex;
+    gap: 15px;
+    background-color: #111111;
+    margin-left: 150px;
+    margin-right: 150px;
+    img {
+      @media screen and (max-width: 520px) {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+    }
+
+    @media screen and (max-width: 769px) {
+     margin-right: auto;
+     margin-left: auto;
+     flex-direction: column;
+    }
+    @media screen and (max-width: 520px) {
+      margin-left: 0;
+      margin-right: 0;
+      flex-direction: column;
+      padding-bottom: 30px;
+      border-radius: 10px;
+      h2 {
+        font-size: 25px;
+      }
+    }
+
+    .boxContent {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      justify-content: center;
+      align-items: flex-start;
+      button{
+        width: 200px;
+      }
+      @media screen and (max-width: 769px) {
+        text-align: center;
+        align-items: center;
+        margin: 0 20px 15px 20px;
+      }
+      @media screen and (max-width: 520px) {
+        text-align: center;
+        align-items: center;
+        margin: 0 20px 0 20px;
+      }
+      p {
+        color: #ffffff;
+      }
+    }
+  }
+
+  .platformInfo {
+    display: flex;
+    gap: 15px;
+    padding-top: 50px;
+    @media screen and (max-width: 769px) {
+      flex-direction: column;
+      align-items: center;
+    }
+    @media screen and (max-width: 520px) {
+      flex-direction: column;
+      align-items: center;
+    }
+    .platformImgFrame {
+      width: 50%;
+      @media screen and (max-width: 769px) {
+        width: 100%;
+      }
+    }
+    .platformItems {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      @media screen and (max-width: 769px) {
+        width: 100%;
+      }
+    }
+    .headerMobile {
+      display: none;
+      @media screen and (max-width: 520px) {
+        display: flex;
+        text-align: center;
+      }
+    }
+    .platformItem {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      @media screen and (max-width: 520px) {
+        flex-direction: column;
+        text-align: center;
+      }
+      p {
+        color: #ffffff;
+      }
+    }
+
+    .platformContent {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .nftBenefits {
+    display: flex;
+    gap: 25px;
+    padding-top: 50px;
+    @media screen and (max-width: 769px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    h2 {
+      color: #ffffff;
+      margin-bottom: 40px;
+    }
+    p {
+      color: #ffffff;
+    }
+
+    .benefitsGrid {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 50%;
+      @media screen and (max-width: 769px) {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+.container {
+  color: #fff;
+
+  h2 {
+    font-size: 58px;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+    @media screen and (max-width: 520px) {
+      font-size: 25px;
+    }
+  }
+
+  .description {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff;
+  }
+}
+
+.infoSection {
+  display: flex;
+  align-items: flex-start;
+  background-color: #1a1537;
+  color: #fff;
+  justify-content: space-between;
+  @media screen and (max-width: 520px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 58px;
+    margin-bottom: 1rem;
+    @media screen and (max-width: 520px) {
+      font-size: 25px;
+    }
+  }
+
+  p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    @media screen and (max-width: 520px) {
+      text-align: center;
+    }
+  }
+
+  .meetButton {
+    display: flex;
+    align-items: center;
+    width: 176px;
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 1px solid #78aaff;
+    color: #78aaff;
+    transition: background-color 0.3s, color 0.3s;
+
+    span {
+      margin-left: 0.5rem;
+    }
+
+    &:hover {
+      background-color: #78aaff;
+      color: #1c1e3b;
+    }
+  }
+
+  &_content {
+    width: 45%;
+    margin: 70px;
+    @media screen and (max-width: 520px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: auto;
+    }
+  }
+  &_img {
+    width: 40%;
+    @media screen and (max-width: 520px) {
+      width: 100%;
+    }
+  }
+}
