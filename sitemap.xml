@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://jussplay.dev/</loc>
+    <lastmod>2025-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+    <url>
+    <loc>https://jussplay.dev/home</loc>
+    <lastmod>2025-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://jussplay.dev/contactus</loc>
+    <lastmod>2025-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jussplay.dev/career</loc>
+    <lastmod>2025-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jussplay.dev/service</loc>
+    <lastmod>2025-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jussplay.dev/aboutus</loc>
+    <lastmod>2025-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <!-- Blockchain -->
+  <url><loc>https://jussplay.dev/blockchain</loc></url>
+  <url><loc>https://jussplay.dev/nft-token-development</loc></url>
+  <url><loc>https://jussplay.dev/metaverse</loc></url>
+  <url><loc>https://jussplay.dev/web3-game-development</loc></url>
+  <url><loc>https://jussplay.dev/crypto-exchange-software-development</loc></url>
+  <url><loc>https://jussplay.dev/web3</loc></url>
+  <url><loc>https://jussplay.dev/android-app-development-company</loc></url>
+  <!-- Service -->
+  <url><loc>https://jussplay.dev/service-ios</loc></url>
+  <url><loc>https://jussplay.dev/web-app</loc></url>
+  <url><loc>https://jussplay.dev/service-web3</loc></url>
+  <url><loc>https://jussplay.dev/wallet</loc></url>
+  <!-- AI -->
+  <url><loc>https://jussplay.dev/ai-service</loc></url>
+  <url><loc>https://jussplay.dev/service-chatbot</loc></url>
+  <url><loc>https://jussplay.dev/ai-blockchain-wallet</loc></url>
+  <url><loc>https://jussplay.dev/ml</loc></url>
+  <url><loc>https://jussplay.dev/big-data</loc></url>
+  <!-- Design -->
+  <url><loc>https://jussplay.dev/gd</loc></url>
+  <url><loc>https://jussplay.dev/motion</loc></url>
+  <url><loc>https://jussplay.dev/ui-ux</loc></url>
+  <url><loc>https://jussplay.dev/copywriting</loc></url>
+
+</urlset>
