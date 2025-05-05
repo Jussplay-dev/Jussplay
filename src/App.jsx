@@ -57,11 +57,11 @@ export default function App() {
 	const titleAudiRef = useRef(null)
 	const { isPlaying, setIsPlaying } = useSound()
 	const [isPaused, setIsPaused] = useState(false)
-	const [showForm, setShowForm] = useState(false)
+	// const [showForm, setShowForm] = useState(false)
 
-	const toggleForm = () => {
-		setShowForm(prev => !prev)
-	}
+	// const toggleForm = () => {
+	// 	setShowForm(prev => !prev)
+	// }
 
 	const handleLottieClick = useCallback(() => {
 		if (!audioRef.current) return
