@@ -5,133 +5,149 @@ import {
 	RouterProvider,
 	useRouteError,
 } from 'react-router-dom'
-import App from '../App'
-import About from '../pages/About'
-import Blockchain from '../pages/Blockchain'
-import Blockchain4 from '../pages/Blockchain4'
-import Blockchain6 from '../pages/Blockchain6'
-import Career from '../pages/Career'
-import ContactUs from '../pages/ContactUs'
 import { NotFoundPage } from '../pages/Error/NotFoundPage'
-import Home from '../pages/Home'
-import Service from '../pages/Industry'
-import Metaverse from '../pages/Metaverse'
 // import Service from '../pages/Service'
-import Service_1 from '../pages/Service_1'
-import ServiceIOS from '../pages/ServiceIOS'
-import TokenNFT from '../pages/Token'
-import Wallet from '../pages/Wallet'
-import Web3 from '../pages/Web3'
-import Ai from '../pages/Ai'
+import { Link } from 'react-router-dom'
+import { RootLayout } from '../App'
+import { pages } from '../constants/pages'
+import stylesError from '../pages/Error/errorPage.module.scss'
 
 const BubbleError = () => {
 	const error = useRouteError()
-	if (error) throw error
-	return null
+	console.error(error)
+	return (
+		<div className={stylesError.page__error}>
+			<div className={stylesError.page__content}>
+				<h1 className={stylesError.page__error_title}>Error Page</h1>
+				<p>
+					Return to{' '}
+					<Link to='/home'>
+						<span className='text-blue-500 hover:underline'>Home</span>
+					</Link>
+				</p>
+			</div>
+		</div>
+	)
 }
 
 const router = createBrowserRouter([
 	{
-		path: '/*',
-		element: <App />,
+		path: '/',
+		element: <RootLayout />,
 		errorElement: <BubbleError />,
 		children: [
 			{
+				index: true,
+				element: <pages.Loader />,
+			},
+			{
 				path: 'home',
-				element: <Home />,
-				errorElement: <BubbleError />,
+				element: <pages.Home />,
 			},
 			{
 				path: 'contactus',
-				element: <ContactUs />,
-				errorElement: <BubbleError />,
+				element: <pages.ContactUs />,
 			},
 			{
 				path: 'career',
-				element: <Career />,
-				errorElement: <BubbleError />,
+				element: <pages.Career />,
 			},
 			{
 				path: 'aboutus',
-				element: <About />,
-				errorElement: <BubbleError />,
+				element: <pages.About />,
 			},
 			{
 				path: 'service',
-				element: <Service />,
-				errorElement: <BubbleError />,
+				element: <pages.Service />,
 			},
 			{
 				path: 'blockchain',
-				element: <Blockchain />,
-				errorElement: <BubbleError />,
+				element: <pages.Blockchain />,
 			},
 			{
-				path: 'token',
-				element: <TokenNFT />,
-				errorElement: <BubbleError />,
+				path: 'nft-token-development',
+				element: <pages.Token />,
 			},
 			{
 				path: 'metaverse',
-				element: <Metaverse />,
-				errorElement: <BubbleError />,
+				element: <pages.Metaverse />,
 			},
 			{
-				path: 'blockchain-4',
-				element: <Blockchain4 />,
-				errorElement: <BubbleError />,
+				path: 'web3-game-development',
+				element: <pages.Blockchain4 />,
 			},
 			{
-				path: 'blockchain_6',
-				element: <Blockchain6 />,
-				errorElement: <BubbleError />,
+				path: 'crypto-exchange-software-development',
+				element: <pages.Blockchain6 />,
 			},
 			{
 				path: 'web3',
-				element: <Web3 />,
-				errorElement: <BubbleError />,
+				element: <pages.Web3 />,
 			},
 			{
-				path: 'wallet',
-				element: <Wallet />,
-				errorElement: <BubbleError />,
-			},
-			{
-				path: 'service-1',
-				element: <Service_1 />,
-				errorElement: <BubbleError />,
+				path: 'android-app-development-company',
+				element: <pages.Service1 />,
 			},
 			{
 				path: 'service-ios',
-				element: <ServiceIOS />,
-				errorElement: <BubbleError />,
+				element: <pages.ServiceIos />,
+			},
+			{
+				path: 'wallet',
+				element: <pages.Wallet />,
+			},
+			{
+				path: 'web-app',
+				element: <pages.WebApp />,
+			},
+			{
+				path: 'service-chatbot',
+				element: <pages.ChatBot />,
 			},
 			{
 				path: 'ai-service',
-				element: <Ai/>,
-				errorElement: <BubbleError />,
+				element: <pages.Ai />,
+			},
+			{
+				path: 'ai-blockchain-wallet',
+				element: <pages.AiBlockchain />,
+			},
+			{
+				path: 'service-web3',
+				element: <pages.ServiceWeb3 />,
+			},
+			{
+				path: 'ml',
+				element: <pages.ML />,
+			},
+			{
+				path: 'big-data',
+				element: <pages.BD />,
+			},
+			{
+				path: 'gd',
+				element: <pages.GD />,
+			},
+			{
+				path: 'motion',
+				element: <pages.Motion />,
+			},
+			{
+				path: 'ui-ux',
+				element: <pages.UiUx />,
+			},
+			{
+				path: 'copywriting',
+				element: <pages.Copywriting />,
 			},
 			{
 				path: '*',
 				element: <NotFoundPage />,
 			},
-			{
-				path: '',
-				element: <NotFoundPage />,
-			},
 		],
-	},
-	{
-		path: '*',
-		element: <NotFoundPage />,
 	},
 ])
 
 export const BrowserRouter = ({ children }) => {
-	return (
-		<RouterProvider router={router}>
-			<div className=''></div>
-			{children}
-		</RouterProvider>
-	)
+	return <RouterProvider router={router}>{children}</RouterProvider>
 }

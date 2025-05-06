@@ -1,38 +1,41 @@
-import React, { useEffect } from "react";
-import styles from "./cursor.module.scss";
+import { useEffect, useRef } from 'react'
+import styles from './cursor.module.scss'
 
-const CustomCursor = React.memo(() => {
-  useEffect(() => {
-    const cursor = document.querySelector(`.${styles.customCursor}`);
-    const handleMouseMove = (e) => {
-      cursor.style.left = `${e.pageX}px`;
-      cursor.style.top = `${e.pageY}px`;
-    };
+export const CustomCursor = () => {
+	const cursorRef = useRef(null)
 
-    document.addEventListener("mousemove", handleMouseMove);
+	useEffect(() => {
+		const cursor = cursorRef.current
+		if (!cursor) return
 
-    const links = document.querySelectorAll("a");
-    const handleMouseEnter = () => cursor.classList.add(styles.hover);
-    const handleMouseLeave = () => cursor.classList.remove(styles.hover);
+		const handleMouseMove = e => {
+			const { pageX, pageY } = e
+			cursor.style.transform = `translate3d(${pageX}px, ${pageY}px, 0)`
+		}
 
-    links.forEach((link) => {
-      link.addEventListener("mouseenter", handleMouseEnter);
-      link.addEventListener("mouseleave", handleMouseLeave);
-    });
+		document.addEventListener('mousemove', handleMouseMove)
 
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      links.forEach((link) => {
-        link.removeEventListener("mouseenter", handleMouseEnter);
-        link.removeEventListener("mouseleave", handleMouseLeave);
-      });
-    };
-  }, []);
+		// Hover-эффект на ссылки
+		const links = document.querySelectorAll('a')
+		const handleMouseEnter = () => cursor.classList.add(styles.hover)
+		const handleMouseLeave = () => cursor.classList.remove(styles.hover)
 
-  return <div className={styles.customCursor}></div>;
-});
+		links.forEach(link => {
+			link.addEventListener('mouseenter', handleMouseEnter)
+			link.addEventListener('mouseleave', handleMouseLeave)
+		})
 
-export default CustomCursor;
+		return () => {
+			document.removeEventListener('mousemove', handleMouseMove)
+			links.forEach(link => {
+				link.removeEventListener('mouseenter', handleMouseEnter)
+				link.removeEventListener('mouseleave', handleMouseLeave)
+			})
+		}
+	}, [])
+
+	return <div ref={cursorRef} className={styles.customCursor}></div>
+}
 
 // import React, { useEffect, useRef, useState } from 'react';
 // import styles from './cursor.module.scss'; // SCSS modülünü import ediyoruz
@@ -100,5 +103,3 @@ export default CustomCursor;
 // };
 
 // export default CustomCursor;
-
-
