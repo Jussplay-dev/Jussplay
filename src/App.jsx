@@ -6,6 +6,7 @@ import play from './assets/play.png'
 import playing from './assets/playing.png'
 import { CustomCursor } from './components/cursor'
 import { useSound } from './providers/soundContext'
+import { AppLoader } from './shared/ui/AppLoader'
 
 export const AUDIO_SRC = '/MenuSound.mp3'
 export const ICON_SIZE = '40px'
@@ -168,7 +169,7 @@ export const RootLayout = () => {
 					style={{ width: ICON_SIZE }}
 				/>
 			</div>
-			<Suspense fallback={<div className='root-loader'>Loading...</div>}>
+			<Suspense fallback={<AppLoader />}>
 				<Outlet />
 			</Suspense>
 		</AnimatePresence>
