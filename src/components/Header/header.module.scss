@@ -17,16 +17,14 @@
   }
 
   @media (max-width: 768px) {
-    justify-content: flex-end;
+    justify-content: space-between;
     img {
       display: block;
     }
   }
-  &__logo {
-    display: none;
-    @media (max-width: 768px) {
-      display: block;
-    }
+
+  .logo {
+    display: block;
   }
 
   &_logo {
@@ -217,4 +215,21 @@
   padding: 10px 10px;
   font-size: 25px;
   width: auto;
+}
+
+.activeHeaderSubMenu {
+  position: relative;
+  z-index: 1000;
+  background-color: #191919;
+  overflow-y: auto;
+  height: 100px;
+  overscroll-behavior: contain;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.subMenuItemLink {
+  display: block;
+  max-width: 300px;
+  margin: 0 auto;
 }
