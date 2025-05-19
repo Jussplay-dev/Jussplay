@@ -5,58 +5,73 @@ import select from '../../assets/select_V2.wav'
 import { useSound } from '../../providers/soundContext'
 import styles from './header.module.scss'
 
-import { useNavigate } from 'react-router-dom'
 import { HeaderButton } from './HeaderButton'
 import { HeaderLogo } from './HeaderLogo'
 import { HeaderMobile } from './HeaderMobile'
 import { Nav } from './Nav'
 
+// Todo: 4 Category - Service, Blockchain, Ai, Graphic-Design
 const menuItems = [
-	{ name: 'Home', path: '/home/#hero' },
+	{ name: 'Home', path: '/home' },
 	// { name: "Projects", path: "/home/#projects" },
-	{ name: 'Service', path: '/service' },
-	{ name: 'About us', path: '/aboutus' },
-	{ name: 'Contact us', path: '/contactus' },
 	{
-		name: 'Android-app ',
-		path: '/android-app-development-company',
+		name: 'Service',
+		path: '/service',
+		list: [
+			{
+				name: 'Android-app ',
+				path: '/android-app-development-company',
+			},
+			{ name: ' Service-ios ', path: '/service-ios' },
+			{ name: 'Ai-service', path: '/ai-service' },
+			{ name: 'Service-web3', path: '/service-web3' },
+			{ name: 'Web-App ', path: '/web-app' },
+		],
 	},
-	{ name: ' Service-ios ', path: '/service-ios' },
-	{ name: ' WebApp ', path: '/web-app' },
-	{ name: 'Android App', path: '/android-app-development-company' },
-	{ name: 'Chatbot', path: '/service-chatbot' },
-	{ name: 'Ai-service', path: '/ai-service' },
-	{ name: 'Service-web3', path: '/service-web3' },
-	{ name: 'ML', path: '/ml' },
-	{ name: 'BigData', path: '/big-data' },
-	{ name: 'Graphic-Design', path: '/gd' },
-	{ name: 'Motion', path: '/motion' },
-	{ name: 'UI/UX', path: '/ui-ux' },
-	{ name: 'Copywriting', path: '/copywriting' },
+	{
+		name: 'Machine Learning',
+		path: '/ml',
+		list: [
+			{ name: 'Chatbot', path: '/service-chatbot' },
+			{ name: 'Big-Data', path: '/big-data' },
+		],
+	},
 	{
 		name: 'Blockchain',
 		path: '/blockchain',
+		list: [
+			{ name: 'Web3 ', path: '/web3' },
+			{ name: 'Token', path: '/nft-token-development' },
+			{ name: 'Metaverse ', path: '/metaverse' },
+			{ name: 'Web3-game-development', path: '/web3-game-development' },
+			{
+				name: 'Crypto-exchange-development ',
+				path: '/crypto-exchange-software-development',
+			},
+			{ name: 'Wallet ', path: '/wallet' },
+		],
+		activeEl: 3,
 	},
-	{ name: 'Token', path: '/nft-token-development' },
-	{ name: 'Metaverse ', path: '/metaverse' },
-	{ name: 'Web3-game-development', path: '/web3-game-development' },
-	{ name: 'Web3 ', path: '/web3' },
 	{
-		name: 'Crypto-exchange-development ',
-		path: '/crypto-exchange-software-development',
+		name: 'Graphic-Design',
+		path: '/gd',
+		list: [
+			{ name: 'Motion', path: '/motion' },
+			{ name: 'UI/UX', path: '/ui-ux' },
+			{ name: 'Copywriting', path: '/copywriting' },
+		],
 	},
-	{ name: 'Wallet ', path: '/wallet' },
+	{ name: 'About us', path: '/aboutus' },
+	{ name: 'Contact us', path: '/contactus' },
 ]
 
-export default memo(function Header({ children, position }) {
+export default memo(function Header() {
 	const [isMenuActive, setIsMenuActive] = useState(false)
 	const [activeDropdown, setActiveDropdown] = useState(null)
 	const [activeSubMenuIndex, setActiveSubMenuIndex] = useState(null)
 
 	const [isHeaderVisible, setIsHeaderVisible] = useState(true)
-	const [isUserScrollingUp, setIsUserScrollingUp] = useState(false)
-
-	const navigate = useNavigate()
+	// const navigate = useNavigate()
 
 	const audioRef = useRef(new Audio(select))
 	const { isPlaying } = useSound()
@@ -81,9 +96,9 @@ export default memo(function Header({ children, position }) {
 			if (window.innerWidth > 768) {
 				if (scrollTop > lastScrollY) {
 					setIsHeaderVisible(false)
-					setIsUserScrollingUp(false)
+					// setIsUserScrollingUp(false)
 				} else {
-					setIsUserScrollingUp(true)
+					// setIsUserScrollingUp(true)
 				}
 				lastScrollY = scrollTop
 			}
@@ -136,7 +151,7 @@ export default memo(function Header({ children, position }) {
 					activeSubMenuIndex={activeSubMenuIndex}
 					setIsMenuActive={setIsMenuActive}
 					toggleSubMenu={toggleSubMenu}
-					navigate={navigate}
+					// navigate={navigate}
 				/>
 			</header>
 			{/* Show Button When Header is Hidden */}

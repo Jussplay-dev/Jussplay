@@ -1,4 +1,8 @@
+/* eslint-disable react/prop-types */
 import classNames from 'classnames'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { FaChevronDown } from 'react-icons/fa'
 import { HashLink } from 'react-router-hash-link'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -8,8 +12,6 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import styles from './header.module.scss'
 import { HeaderSocial } from './HeaderSocial'
 
-// !Todo: Make new dropdown header service, remove sublist blockchain header mobile, updated content where chatbot, ai, ...etc
-
 export const HeaderMobile = ({
 	isMenuActive,
 	playSound,
@@ -17,8 +19,13 @@ export const HeaderMobile = ({
 	activeSubMenuIndex,
 	setIsMenuActive,
 	toggleSubMenu,
-	navigate,
 }) => {
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
+	const handleDropdownToggle = index => {
+		toggleSubMenu(index)
+		setIsDropdownOpen(prev => !prev || activeSubMenuIndex !== index)
+	}
 	return (
 		<div
 			className={classNames(styles.header_menu, {
@@ -33,9 +40,12 @@ export const HeaderMobile = ({
 					pagination={false}
 					modules={Navigation}
 					slidesPerView={3}
-					spaceBetween={30}
+					spaceBetween={activeSubMenuIndex === 3 ? 150 : 80}
 					centeredSlides={true}
+					observeParents={true}
+					observer={true}
 					className='mySwiper'
+					allowTouchMove={!isDropdownOpen}
 					onSlideChange={() => {
 						if (window.innerWidth <= 520) {
 							// Ensure it's mobile
@@ -44,14 +54,15 @@ export const HeaderMobile = ({
 					}}
 				>
 					{menuItems.map((item, index) => (
-						<SwiperSlide key={index}>
-							<li
-								style={{
-									...(index === 5 && activeSubMenuIndex === 4
-										? { marginTop: 160 }
-										: {}),
-								}}
-							>
+						<SwiperSlide
+							key={index}
+							style={{
+								...(index === activeSubMenuIndex
+									? { marginBottom: 150 }
+									: { marginBottom: 80 }),
+							}}
+						>
+							<li className={styles.menuItemList}>
 								<HashLink
 									smooth
 									to={item.path}
@@ -59,7 +70,7 @@ export const HeaderMobile = ({
 								>
 									{item.name}
 								</HashLink>
-								{/* {item.list && (
+								{item.list && (
 									<motion.div
 										animate={{
 											rotate: activeSubMenuIndex === index ? 180 : 0,
@@ -68,50 +79,33 @@ export const HeaderMobile = ({
 									>
 										<FaChevronDown
 											size={35}
-											onClick={() => toggleSubMenu(index)}
+											onClick={() => handleDropdownToggle(index)}
 										/>
 									</motion.div>
-								)} */}
+								)}
 							</li>
-							{/* {activeSubMenuIndex === index && (
+							{activeSubMenuIndex === index && (
 								<motion.div
 									animate={{
-										y: activeSubMenuIndex ? -50 : 50,
+										y: activeSubMenuIndex ? -10 : 50,
 										opacity: activeSubMenuIndex ? 1 : 0,
 									}}
 									transition={{ duration: 0.4, ease: 'easeOut' }}
+									className={styles.activeHeaderSubMenu}
 								>
 									<ul>
-										<Swiper
-											direction={'vertical'}
-											loop={false}
-											pagination={false}
-											modules={Navigation}
-											slidesPerView={3}
-											spaceBetween={20}
-											centeredSlides={true}
-											className='mySubSwiper'
-											onSlideChange={() => {
-												if (window.innerWidth <= 520) {
-													// Ensure it's mobile
-													playSound()
-												}
-											}}
-										>
-											{item.list.map((subItem, index) => (
-												<SwiperSlide
-													key={index}
-													onClick={() => navigate(subItem.path)}
-												>
-													{/* <HashLink to={subItem.path}> */}
-							{/* <li style={{ fontSize: 26 }}>{subItem.name}</li> */}
-							{/* </HashLink> */}
-							{/* </SwiperSlide> */}
-							{/* // ))} */}
-							{/* </Swiper> */}
-							{/* // </ul> */}
-							{/* // </motion.div> */}
-							{/* // )} */}{' '}
+										{item.list.map((subItem, index) => (
+											<HashLink
+												key={index}
+												to={subItem.path}
+												className={styles.subMenuItemLink}
+											>
+												<li style={{ fontSize: 26 }}>{subItem.name}</li>
+											</HashLink>
+										))}
+									</ul>
+								</motion.div>
+							)}
 						</SwiperSlide>
 					))}
 				</Swiper>
