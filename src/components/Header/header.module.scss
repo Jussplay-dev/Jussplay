@@ -1,235 +1,234 @@
-@import "../../constants/colors.scss";
+@import '../../constants/colors.scss';
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px 0;
-  position: fixed;
-  width: 100%;
-  z-index: 5;
-  font-family: "Space Grotesk";
-  transition: transform 0.4s ease;
-  z-index: 100;
-  transform: translateX(0);
-  &.hidden {
-    transform: translateX(100%);
-  }
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 30px 0;
+	position: fixed;
+	width: 100%;
+	font-family: 'Space Grotesk';
+	transition: transform 0.4s ease;
+	z-index: 100;
+	transform: translateX(0);
+	&.hidden {
+		transform: translateX(100%);
+	}
 
-  @media (max-width: 768px) {
-    justify-content: space-between;
-    img {
-      display: block;
-    }
-  }
+	@media (max-width: 768px) {
+		justify-content: space-between;
+		img {
+			display: block;
+		}
+	}
 
-  .logo {
-    display: block;
-  }
+	.logo {
+		display: block;
+	}
 
-  &_logo {
-    color: $white;
-    margin-left: 30px;
-    height: 100px;
-    width: 100px;
-  }
-  &_nav {
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border: 1px solid $white;
-    border-right: none;
-    padding: 10px 22px;
-    right: 0;
+	&_logo {
+		color: $white;
+		margin-left: 30px;
+		height: 100px;
+		width: 100px;
+	}
+	&_nav {
+		border-top-left-radius: 20px;
+		border-bottom-left-radius: 20px;
+		border: 1px solid $white;
+		border-right: none;
+		padding: 10px 22px;
+		right: 0;
 
-    ul {
-      display: flex;
-      gap: 8px;
+		ul {
+			display: flex;
+			gap: 8px;
 
-      li {
-        position: relative;
-        color: $inactiveGray;
-        font-size: 20px;
-        font-weight: 400;
-        line-height: 20px;
-        text-transform: uppercase;
-        transition: all 0.2s;
-        & a:hover {
-          color: $white;
-        }
-        &:hover {
-          color: $white;
-        }
+			li {
+				position: relative;
+				color: $inactiveGray;
+				font-size: 20px;
+				font-weight: 400;
+				line-height: 20px;
+				text-transform: uppercase;
+				transition: all 0.2s;
+				& a:hover {
+					color: $white;
+				}
+				&:hover {
+					color: $white;
+				}
 
-        @media screen and (max-width: 900px) {
-          & {
-            font-size: 16px;
-          }
-        }
-      }
-    }
+				@media screen and (max-width: 900px) {
+					& {
+						font-size: 16px;
+					}
+				}
+			}
+		}
 
-    @media screen and (max-width: 768px) {
-      & {
-        display: none;
-      }
-    }
-  }
+		@media screen and (max-width: 768px) {
+			& {
+				display: none;
+			}
+		}
+	}
 
-  &_menuBtn {
-    color: $white;
-    margin-right: 30px;
-    border: 1px solid $white;
-    padding: 6px 16px;
-    text-transform: uppercase;
-    border-radius: 20px;
+	&_menuBtn {
+		color: $white;
+		margin-right: 30px;
+		border: 1px solid $white;
+		padding: 6px 16px;
+		text-transform: uppercase;
+		border-radius: 20px;
 
-    transition: all 0.2s;
-    font-family: SGrotReg, sans-serif;
-    font-size: 22px;
-    display: none;
-    &:hover {
-      background-color: $white;
-      color: #191919;
-    }
+		transition: all 0.2s;
+		font-family: SGrotReg, sans-serif;
+		font-size: 22px;
+		display: none;
+		&:hover {
+			background-color: $white;
+			color: #191919;
+		}
 
-    @media screen and (max-width: 768px) {
-      & {
-        display: initial;
-      }
-    }
-  }
+		@media screen and (max-width: 768px) {
+			& {
+				display: initial;
+			}
+		}
+	}
 
-  &_menu_inactive {
-    position: fixed;
-    left: 0;
-    top: -100%;
-    background: linear-gradient(to left top, #272727, #383838);
-    height: 100vh;
-    z-index: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    display: none;
-  }
+	&_menu_inactive {
+		position: fixed;
+		left: 0;
+		top: -100%;
+		background: linear-gradient(to left top, #272727, #383838);
+		height: 100vh;
+		z-index: 500;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		display: none;
+	}
 
-  &_menu_active {
-    position: fixed;
-    left: 0%;
-    top: 0;
-    background: linear-gradient(to left top, #272727, #383838);
-    height: 100vh;
-    z-index: 500;
-    display: block;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
+	&_menu_active {
+		position: fixed;
+		left: 0%;
+		top: 0;
+		background: linear-gradient(to left top, #272727, #383838);
+		height: 100vh;
+		z-index: 500;
+		display: block;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+	}
 
-  &_menu {
-    &_diagonal {
-      background-color: #191919;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      li {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 15px;
-        font-family: SGrotReg, sans-serif;
-        font-size: 38px;
-        font-weight: 400;
-        line-height: 63.92px;
-        text-align: center;
-        color: $white;
-        transition: all 0.2s;
-        text-transform: uppercase;
-        padding: 15px 0px;
+	&_menu {
+		&_diagonal {
+			background-color: #191919;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
+			li {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 15px;
+				font-family: SGrotReg, sans-serif;
+				font-size: 38px;
+				font-weight: 400;
+				line-height: 63.92px;
+				text-align: center;
+				color: $white;
+				transition: all 0.2s;
+				text-transform: uppercase;
+				padding: 15px 0px;
 
-        // margin: 70px 0;
-        & a:hover {
-          opacity: 0.8;
-        }
-        & a {
-          color: $white;
-        }
-      }
-    }
+				// margin: 70px 0;
+				& a:hover {
+					opacity: 0.8;
+				}
+				& a {
+					color: $white;
+				}
+			}
+		}
 
-    &_close {
-      position: absolute;
-      color: $white;
-      right: 6%;
-      top: 3%;
-      font-size: 60px;
+		&_close {
+			position: absolute;
+			color: $white;
+			right: 6%;
+			top: 3%;
+			font-size: 60px;
 
-      transition: all 0.2s;
-      &:hover {
-        opacity: 0.8;
-      }
-    }
+			transition: all 0.2s;
+			&:hover {
+				opacity: 0.8;
+			}
+		}
 
-    &_socials {
-      color: #fff;
-      position: absolute;
-      bottom: 3%;
-      left: 5%;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+		&_socials {
+			color: #fff;
+			position: absolute;
+			bottom: 3%;
+			left: 5%;
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
 
-      &_icons {
-        display: flex;
-        gap: 15px;
-        color: $white;
-        font-size: 32px;
-        align-items: center;
-        a {
-          color: #fff;
-        }
-      }
+			&_icons {
+				display: flex;
+				gap: 15px;
+				color: $white;
+				font-size: 32px;
+				align-items: center;
+				a {
+					color: #fff;
+				}
+			}
 
-      &_pageLinks {
-        font-family: SGrotReg, sans-serif;
-        font-size: 25px;
-        font-weight: 400;
-        color: $white;
-        text-transform: uppercase;
-      }
-    }
-  }
+			&_pageLinks {
+				font-family: SGrotReg, sans-serif;
+				font-size: 25px;
+				font-weight: 400;
+				color: $white;
+				text-transform: uppercase;
+			}
+		}
+	}
 }
 
 .logo {
-  @media screen and (max-width: 520px) {
-    display: none;
-  }
+	@media screen and (max-width: 520px) {
+		display: none;
+	}
 }
 
 .toggleButton {
-  background: transparent;
-  color: #fff;
-  border: none;
-  padding: 10px 10px;
-  font-size: 25px;
-  width: auto;
+	background: transparent;
+	color: #fff;
+	border: none;
+	padding: 10px 10px;
+	font-size: 25px;
+	width: auto;
 }
 
 .activeHeaderSubMenu {
-  position: relative;
-  z-index: 1000;
-  background-color: #191919;
-  overflow-y: auto;
-  height: 100px;
-  overscroll-behavior: contain;
+	position: relative;
+	z-index: 1000;
+	background-color: #191919;
+	overflow-y: auto;
+	height: 100px;
+	overscroll-behavior: contain;
 
-  -webkit-overflow-scrolling: touch;
+	-webkit-overflow-scrolling: touch;
 }
 
 .subMenuItemLink {
-  display: block;
-  max-width: 300px;
-  margin: 0 auto;
+	display: block;
+	max-width: 300px;
+	margin: 0 auto;
 }

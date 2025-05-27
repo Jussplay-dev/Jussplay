@@ -31,7 +31,7 @@ export const RootLayout = () => {
 
 	const handleAudioToggle = useCallback(() => {
 		if (!audioRef.current) return
-
+		fetch
 		if (isPlaying) {
 			audioRef.current.pause()
 			setIsPaused(true)
@@ -40,7 +40,8 @@ export const RootLayout = () => {
 			setIsPaused(false)
 			titleAudiRef.current?.classList.add('title-lottie__anim')
 			setTimeout(() => {
-				titleAudiRef.current && (titleAudiRef.current.style.display = 'none')
+				this.props.titleAudiRef.current &&
+					(titleAudiRef.current.style.display = 'none')
 			}, 500)
 		}
 
