@@ -3,9 +3,14 @@ import LogoLottie from '../../../components/Lottie/Lottie'
 
 export const IntroBody = ({ styles, logoLottieId, introAboutId }) => {
 	return (
-		<div className={styles.intro_body} id={logoLottieId}>
-			<LogoLottie />
-			<div className={styles.intro_body_text} id={introAboutId}>
+		<div className={styles.intro_body}>
+			<div id={logoLottieId ? logoLottieId : ''}>
+				<LogoLottie />
+			</div>
+			<div
+				className={styles.intro_body_text}
+				id={introAboutId ? introAboutId : ''}
+			>
 				<p>
 					Join <span>JussPlay,</span>
 				</p>

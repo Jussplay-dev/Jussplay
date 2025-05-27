@@ -1,4 +1,6 @@
 // import { CustomScroll } from '../../../components/scroll/CustomScroll'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Footer from '../../../components/Footer'
 import ScrollSection from '../../../components/ScrollSection'
 import transition from '../../../pageTransition'
@@ -9,13 +11,15 @@ import stylesHome from './new-home.module.scss'
 import { SelectProject } from './SelectProject'
 import { TrustedBy } from './TrustedBy'
 
+gsap.registerPlugin(ScrollTrigger)
+
 const Home2V = () => {
 	return (
 		// <CustomScroll>
 		<WrapperPage>
 			<Header />
 			<main className={stylesHome.main}>
-				<Intro />
+				<Intro logoLottieId={'logoLottie'} introAboutId={'introAbout'} />
 				<SelectProject />
 				<ScrollSection />
 				<TrustedBy />
