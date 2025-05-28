@@ -38,10 +38,15 @@ export const RootLayout = () => {
 		} else {
 			audioRef.current.play()
 			setIsPaused(false)
-			titleAudiRef.current?.classList.add('title-lottie__anim')
-			setTimeout(() => {
-				titleAudiRef.current && (titleAudiRef.current.style.display = 'none')
-			}, 500)
+
+			if (titleAudiRef.current) {
+				titleAudiRef.current.classList.add('title-lottie__anim')
+				setTimeout(() => {
+					if (titleAudiRef.current) {
+						titleAudiRef.current.style.display = 'none'
+					}
+				}, 500)
+			}
 		}
 
 		setIsPlaying(prevState => !prevState)
@@ -68,9 +73,9 @@ export const RootLayout = () => {
 				/>
 			</div>
 			{location.pathname === '/' ? (
-				<Outlet />
+				<Outlet key={location.pathname} />
 			) : (
-				<Suspense fallback={<AppLoader />}>
+				<Suspense fallback={<AppLoader />} key={location.pathname}>
 					<Outlet />
 				</Suspense>
 			)}

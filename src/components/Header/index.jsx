@@ -10,7 +10,6 @@ import { HeaderLogo } from './HeaderLogo'
 import { HeaderMobile } from './HeaderMobile'
 import { Nav } from './Nav'
 
-// Todo: 4 Category - Service, Blockchain, Ai, Graphic-Design
 const menuItems = [
 	{ name: 'Home', path: '/home' },
 	// { name: "Projects", path: "/home/#projects" },

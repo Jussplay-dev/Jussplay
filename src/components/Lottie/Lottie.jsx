@@ -32,13 +32,13 @@ function LogoLottie() {
 	}
 
 	return (
-		<>
+		<div className='lottie_block'>
 			<Lottie
 				options={defaultOptions}
 				height={size.height}
 				width={size.width}
 			/>
-		</>
+		</div>
 	)
 }
 
