@@ -1,3 +1,5 @@
+import 'swiper/css'
+import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { trustedByData } from '../../../constants/home'
 import { Container } from '../../../shared/ui/WrapperContainer'
@@ -19,7 +21,17 @@ export const TrustedBy = () => {
 					))}
 				</div>
 				<div className={styles.trusted_by_row_mobile}>
-					<Swiper slidesPerView={2.5}>
+					<Swiper
+						slidesPerView={2.5}
+						autoplay={{
+							delay: 0,
+							disableOnInteraction: false,
+							reverseDirection: false,
+						}}
+						speed={1500}
+						modules={[Autoplay]}
+						loop={true}
+					>
 						{trustedByData.map((trustedBy, index) => (
 							<SwiperSlide key={trustedBy.id}>
 								<TrustedByColumn

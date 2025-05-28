@@ -3,9 +3,14 @@ import { IconEllipse } from '../../../shared/ui/Icons'
 import { Container } from '../../../shared/ui/WrapperContainer'
 import { IntroBody } from './IntroBody'
 import { IntroTop } from './IntroTop'
-import styles from './new-home.module.scss'
 
-export const Intro = ({ logoLottieId, introAboutId }) => {
+export const Intro = ({
+	logoLottieId,
+	introAboutId,
+	sectionRef,
+	visible,
+	styles,
+}) => {
 	return (
 		<section className={styles.main_section}>
 			<Container>
@@ -14,6 +19,8 @@ export const Intro = ({ logoLottieId, introAboutId }) => {
 					styles={styles}
 					logoLottieId={logoLottieId}
 					introAboutId={introAboutId}
+					sectionRef={sectionRef}
+					visible={visible}
 				/>
 			</Container>
 			<IconEllipse styles={styles.intro_ellipse} />

@@ -1,14 +1,22 @@
 /* eslint-disable react/prop-types */
 import LogoLottie from '../../../components/Lottie/Lottie'
 
-export const IntroBody = ({ styles, logoLottieId, introAboutId }) => {
+export const IntroBody = ({
+	styles,
+	logoLottieId,
+	introAboutId,
+	sectionRef,
+	visible,
+}) => {
 	return (
-		<div className={styles.intro_body}>
+		<div className={styles.intro_body} ref={sectionRef}>
 			<div id={logoLottieId ? logoLottieId : ''}>
 				<LogoLottie />
 			</div>
 			<div
-				className={styles.intro_body_text}
+				className={`${styles.intro_body_text} ${
+					visible ? styles.intro_body_text_active : ''
+				}`}
 				id={introAboutId ? introAboutId : ''}
 			>
 				<p>
