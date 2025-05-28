@@ -1,8 +1,8 @@
 import 'swiper/css'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { trustedByData } from '../../../constants/home'
-import { Container } from '../../../shared/ui/WrapperContainer'
+import { trustedByData } from '../../constants/home'
+import { Container } from '../../shared/ui/WrapperContainer'
 import styles from './new-home.module.scss'
 import { TrustedByColumn } from './TrustedByColumn'
 

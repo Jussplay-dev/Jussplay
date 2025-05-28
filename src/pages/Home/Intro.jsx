@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import { IconEllipse } from '../../../shared/ui/Icons'
-import { Container } from '../../../shared/ui/WrapperContainer'
+import { IconEllipse } from '../../shared/ui/Icons'
+import { Container } from '../../shared/ui/WrapperContainer'
 import { IntroBody } from './IntroBody'
 import { IntroTop } from './IntroTop'
 

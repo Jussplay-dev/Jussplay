@@ -2,7 +2,6 @@ import { lazy } from 'react'
 
 export const pages = {
 	Home: lazy(() => import('../pages/Home/index.jsx')),
-	Home2: lazy(() => import('../widgets/MainContent/home/home2V.jsx')),
 	Loader: lazy(() => import('../pages/Loader/index.jsx')),
 	ContactUs: lazy(() => import('../pages/ContactUs/index.jsx')),
 	Career: lazy(() => import('../pages/Career/index.jsx')),

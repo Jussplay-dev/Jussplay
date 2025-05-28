@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import LogoLottie from '../../../components/Lottie/Lottie'
+
+import LogoLottie from '../../components/Lottie/Lottie'
 
 export const IntroBody = ({
 	styles,

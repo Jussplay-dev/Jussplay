@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import { IconArrowIntro } from '../../../shared/ui/Icons'
+
+import { IconArrowIntro } from '../../shared/ui/Icons'
 import { MainTitle } from './MainTitle'
 
 export const IntroTop = ({ styles }) => {

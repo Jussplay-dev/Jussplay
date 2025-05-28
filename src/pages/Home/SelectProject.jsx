@@ -1,6 +1,6 @@
-import WorkTab from '../../../components/WorkTab'
-import { workTabs } from '../../../constants/home'
-import { Container } from '../../../shared/ui/WrapperContainer'
+import WorkTab from '../../components/WorkTab'
+import { workTabs } from '../../constants/home'
+import { Container } from '../../shared/ui/WrapperContainer'
 import styles from './new-home.module.scss'
 
 export const SelectProject = () => {

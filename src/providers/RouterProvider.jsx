@@ -40,13 +40,9 @@ const router = createBrowserRouter([
 				index: true,
 				element: <pages.Loader />,
 			},
-			// {
-			// 	path: 'home',
-			// 	element: <pages.Home />,
-			// },
 			{
 				path: 'home',
-				element: <pages.Home2 />,
+				element: <pages.Home />,
 			},
 			{
 				path: 'contactus',
