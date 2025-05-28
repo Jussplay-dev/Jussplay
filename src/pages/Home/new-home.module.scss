@@ -108,11 +108,15 @@ $contentFont: 'Space Grotesk';
 			align-items: center;
 			gap: 12px;
 			padding: 20px 40px 22px 40px;
+			width: 256px;
 			opacity: 1;
 
 			border: none;
+			outline: none;
+
 			border-radius: 20px;
 			background-color: #3a105f;
+
 			span {
 				font-family: $contentFont;
 				font-weight: 700;
@@ -126,6 +130,7 @@ $contentFont: 'Space Grotesk';
 			}
 
 			&:hover {
+				background-color: #3a105f;
 				svg {
 					transform: translateX(1rem);
 				}

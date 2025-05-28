@@ -12,7 +12,7 @@ export const IntroBody = ({
 	return (
 		<div className={styles.intro_body} ref={sectionRef}>
 			<div id={logoLottieId ? logoLottieId : ''}>
-				<LogoLottie />
+				<LogoLottie key={logoLottieId || 'default-logo-lottie-key'} />
 			</div>
 			<div
 				className={`${styles.intro_body_text} ${
