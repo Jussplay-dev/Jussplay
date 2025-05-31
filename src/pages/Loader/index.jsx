@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as THREE from 'three'
@@ -6,7 +7,7 @@ import { CustomScroll } from '../../components/scroll/CustomScroll'
 import transition from '../../pageTransition'
 import styles from './loader.module.scss'
 
-function Loader() {
+function Loader({ onComplete }) {
 	const [loadPercentage, setLoadPercentage] = useState(0)
 	const [hidden, setHidden] = useState(false)
 	const [isLottiePlaying, setIsLottiePlaying] = useState(false)
@@ -28,17 +29,35 @@ function Loader() {
 		return () => clearInterval(interval)
 	}, [])
 
+	// Обработчик клика «Start journey»
 	const handleButtonClick = () => {
+		// Скрываем цифры и кнопку
 		setHidden(true)
+		// Запускаем Lottie-анимацию
 		setIsLottiePlaying(true)
-		audioRef.current.play()
+
+		// Если есть аудио, проигрываем
+		if (audioRef.current) {
+			audioRef.current.play().catch(() => {
+				// если браузер заблокировал autoplay, можно обработать ошибку
+			})
+		}
+
+		// Запускаем эффект взрыва через THREE.js
 		initiateExplosion()
 
-		return setTimeout(() => {
+		// Сразу говорим RootLayout, что лоадер главной страницы «закончился»
+		if (typeof onComplete === 'function') {
+			onComplete()
+		}
+
+		// Через 4500 мс переходим на '/home'
+		setTimeout(() => {
 			navigate('/home')
 		}, 4500)
 	}
 
+	// Создаём «взрыв» точек через THREE.js
 	const initiateExplosion = () => {
 		const movementSpeed = 30
 		const totalObjects = 5000
@@ -47,6 +66,9 @@ function Loader() {
 		let parts = []
 
 		const container = containerRef.current
+		if (!container) return
+
+		// Настраиваем камеру и сцену
 		const camera = new THREE.PerspectiveCamera(
 			75,
 			window.innerWidth / window.innerHeight,
@@ -57,6 +79,7 @@ function Loader() {
 
 		const scene = new THREE.Scene()
 
+		// Конструктор «частиц-взрыв»
 		function ExplodeAnimation(x, y) {
 			const geometry = new THREE.BufferGeometry()
 			const vertices = []
@@ -82,43 +105,49 @@ function Loader() {
 
 			scene.add(this.object)
 
-			this.update = function () {
-				if (this.status) {
-					const positions = this.object.geometry.attributes.position.array
-					for (let i = 0; i < totalObjects * 3; i += 3) {
-						positions[i] += dirs[i / 3].x * 0.5
-						positions[i + 1] += dirs[i / 3].y * 0.5
-						positions[i + 2] += dirs[i / 3].z * 0.5
-					}
-					this.object.geometry.attributes.position.needsUpdate = true
+			this.update = () => {
+				if (!this.status) return
+				const positions = this.object.geometry.attributes.position.array
+				for (let i = 0; i < totalObjects * 3; i += 3) {
+					positions[i] += dirs[i / 3].x * 0.5
+					positions[i + 1] += dirs[i / 3].y * 0.5
+					positions[i + 2] += dirs[i / 3].z * 0.5
 				}
+				this.object.geometry.attributes.position.needsUpdate = true
 			}
 		}
 
-		const renderer = new THREE.WebGLRenderer()
+		const renderer = new THREE.WebGLRenderer({ antialias: true })
 		renderer.setSize(window.innerWidth, window.innerHeight)
 		container.appendChild(renderer.domElement)
 
+		// Создаём одну «партию» частиц
 		parts.push(new ExplodeAnimation(0, 0))
 
-		function render() {
+		// Основная функция рендера THREE.js
+		const render = () => {
 			requestAnimationFrame(render)
 			parts.forEach(part => part.update())
 			renderer.render(scene, camera)
 		}
-
 		render()
 
-		window.addEventListener(
-			'resize',
-			() => {
-				camera.aspect = window.innerWidth / window.innerHeight
-				camera.updateProjectionMatrix()
-				renderer.setSize(window.innerWidth, window.innerHeight)
-			},
-			false
-		)
+		// Обработчик ресайза
+		const handleResize = () => {
+			camera.aspect = window.innerWidth / window.innerHeight
+			camera.updateProjectionMatrix()
+			renderer.setSize(window.innerWidth, window.innerHeight)
+		}
+		window.addEventListener('resize', handleResize)
+
+		// Очистка при анмаунте (если вдруг Loader-разметка размонтируется раньше)
+		return () => {
+			window.removeEventListener('resize', handleResize)
+			container.removeChild(renderer.domElement)
+			renderer.dispose()
+		}
 	}
+
 	return (
 		<CustomScroll>
 			<main className={styles.loader}>
@@ -131,20 +160,24 @@ function Loader() {
 					}}
 				>
 					{loadPercentage === 100 ? (
+						// JDPloader — твоя Lottie-анимация
 						<JDPloader isPlaying={isLottiePlaying} />
 					) : (
 						<div className={styles.loader_percent}>{loadPercentage}%</div>
 					)}
-					<div
-						className={`${styles.loader_start} ${
-							loadPercentage === 100
-								? styles.loader_startActive
-								: styles.loader_startInactive
-						}`}
-						onClick={handleButtonClick}
-					>
-						Start journey
-					</div>
+					{!hidden && (
+						<div
+							className={`${styles.loader_start} ${
+								loadPercentage === 100
+									? styles.loader_startActive
+									: styles.loader_startInactive
+							}`}
+							onClick={handleButtonClick}
+						>
+							Start journey
+						</div>
+					)}{' '}
+					)Ъ
 				</div>
 				<div
 					ref={containerRef}

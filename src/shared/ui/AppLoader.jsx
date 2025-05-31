@@ -1,12 +1,7 @@
-import { useProgressAppLoader } from '../hooks/useProgressAppLoader'
+/* eslint-disable react/prop-types */
 import styles from './styles.module.scss'
 
-export const AppLoader = () => {
-	const { progress, isDone, shouldRender, handleTransitionEnd } =
-		useProgressAppLoader()
-
-	if (!shouldRender) return null
-
+export const AppLoader = ({ progress, isDone, handleTransitionEnd }) => {
 	const borderRadius = progress >= 100 ? '50%' : '12px'
 	return (
 		<div

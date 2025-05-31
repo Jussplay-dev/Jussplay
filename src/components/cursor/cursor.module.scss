@@ -1,24 +1,33 @@
 .customCursor {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  pointer-events: none;
-  padding: 0.3rem;
-  background-color: #fff;
-  border-radius: 50%;
-  mix-blend-mode: difference;
-  transform: translate3d(0, 0, 0);
-  transition: transform 0.3s ease;
-  z-index: 9999;
-  @media screen and (max-width: 720px) {
-    display: none;
-  }
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	pointer-events: none;
+	padding: 0.3rem;
+	background-color: #fff;
+	border-radius: 50%;
+	mix-blend-mode: difference;
+
+	transition: background-color 0.2s ease, transform 0.2s ease;
+	z-index: 9999;
+
+	will-change: transform, background-color;
+
+	@media screen and (max-width: 720px) {
+		display: none;
+	}
 }
 
 .hover {
-  transform: scale(1.5);
+	transform: scale(1.2);
 }
 
+.clicked {
+	transform: scale(0.8);
+	width: 14px;
+	height: 14px;
+	padding: 0.1rem;
+}
 /* author: https://codepen.io/HighFlyer/pen/vYqvRWV
 Thea
  */

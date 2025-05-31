@@ -37,7 +37,6 @@ const router = createBrowserRouter([
 		errorElement: <BubbleError />,
 		children: [
 			{
-				index: true,
 				element: <pages.Loader />,
 			},
 			{
@@ -148,6 +147,6 @@ const router = createBrowserRouter([
 	},
 ])
 
-export const BrowserRouter = ({ children }) => {
-	return <RouterProvider router={router}>{children}</RouterProvider>
+export const BrowserRouter = () => {
+	return <RouterProvider router={router} />
 }

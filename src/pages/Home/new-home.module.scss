@@ -20,6 +20,8 @@ $contentFont: 'Space Grotesk';
 		-webkit-text-fill-color: transparent;
 		animation: animated_main_title 10s ease-in-out infinite;
 
+		will-change: background-posisiton, background-size;
+
 		@media (max-width: 480px) {
 			font-size: 88px;
 		}
@@ -182,7 +184,7 @@ $contentFont: 'Space Grotesk';
 	&_ellipse {
 		position: absolute;
 		top: 427px;
-		left: -456px;
+		left: 0px;
 		background-color: #3a105f;
 		filter: blur(1222px);
 		width: 1006px;
