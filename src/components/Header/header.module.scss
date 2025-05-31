@@ -132,6 +132,8 @@
 			align-items: center;
 			justify-content: center;
 			height: 100%;
+
+			touch-action: none;
 			li {
 				display: flex;
 				align-items: center;
