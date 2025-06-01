@@ -9,6 +9,8 @@ import { NotFoundPage } from '../pages/Error/NotFoundPage'
 // import Service from '../pages/Service'
 import { Link } from 'react-router-dom'
 import { RootLayout } from '../App'
+import { CustomCursor } from '../components/cursor'
+import { CustomScroll } from '../components/scroll/CustomScroll'
 import { pages } from '../constants/pages'
 import stylesError from '../pages/Error/errorPage.module.scss'
 
@@ -16,17 +18,20 @@ const BubbleError = () => {
 	const error = useRouteError()
 	console.error(error)
 	return (
-		<div className={stylesError.page__error}>
-			<div className={stylesError.page__content}>
-				<h1 className={stylesError.page__error_title}>Error Page</h1>
-				<p>
-					Return to{' '}
-					<Link to='/home'>
-						<span className='text-blue-500 hover:underline'>Home</span>
-					</Link>
-				</p>
+		<CustomScroll>
+			<CustomCursor />
+			<div className={stylesError.page__error}>
+				<div className={stylesError.page__content}>
+					<h1 className={stylesError.page__error_title}>Error Page</h1>
+					<p>
+						Return to{' '}
+						<Link to='/home'>
+							<span className='text-blue-500 hover:underline'>Home</span>
+						</Link>
+					</p>
+				</div>
 			</div>
-		</div>
+		</CustomScroll>
 	)
 }
 
