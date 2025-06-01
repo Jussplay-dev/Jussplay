@@ -43,15 +43,11 @@ export const Navigation = ({
 			<HeaderLogo />
 
 			<ul className={styles.header_nav_item}>
-				<li>
-					<Link to='/contactus' onClick={onClick}>
-						Contact us
-					</Link>
+				<li onClick={onClick}>
+					<Link to='/contactus'>Contact us</Link>
 				</li>
-				<li>
-					<Link to='/aboutus' onClick={onClick}>
-						About us
-					</Link>
+				<li onClick={onClick}>
+					<Link to='/aboutus'>About us</Link>
 				</li>
 			</ul>
 		</nav>
