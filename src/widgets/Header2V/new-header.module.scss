@@ -35,10 +35,19 @@
 				width: 58px;
 				height: 64px;
 			}
-
 			li {
 				a {
 					color: $white;
+				}
+			}
+
+			li,
+			a,
+			span {
+				transition: color 0.9s ease 0s;
+
+				&:hover {
+					color: #f871e6;
 				}
 			}
 		}
