@@ -120,6 +120,7 @@ export const RootLayout = () => {
 					<AppLoader
 						progress={appLoaderProgress}
 						isDone={isAppLoaderDone}
+						isReady={isOtherContentLoaded}
 						handleTransitionEnd={handleAppLoaderTransitionEnd}
 					/>
 				</motion.div>
