@@ -7,11 +7,12 @@ import {
 	useEffect,
 	useState,
 } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { pages } from './constants/pages'
 import { useProgressAppLoader } from './shared/hooks/useProgressAppLoader'
 import { AppLoader } from './shared/ui/AppLoader'
 import { AudioControl } from './shared/ui/AudioControl'
+import { ContentWrapper } from './shared/ui/ContentWrapper'
 
 // Todo: Добавить key для других страницы
 
@@ -41,9 +42,6 @@ export const RootLayout = () => {
 				setIsMainPageLoaderVisible(false)
 				setIsMainPageLoaderReady(false)
 				setIsOtherContentLoaded(false)
-
-				const timer = setTimeout(() => setIsOtherContentLoaded(true), 1200)
-				return () => clearTimeout(timer)
 			}
 		})
 	}, [location.pathname])
@@ -51,6 +49,12 @@ export const RootLayout = () => {
 	const handleMainPageLoaderComplete = useCallback(() => {
 		startTransition(() => {
 			setIsMainPageLoaderReady(true)
+		})
+	}, [])
+
+	const handleContentLoaded = useCallback(isReady => {
+		startTransition(() => {
+			setIsOtherContentLoaded(isReady)
 		})
 	}, [])
 
@@ -64,6 +68,7 @@ export const RootLayout = () => {
 					setIsContentActuallyVisible(false)
 				}
 			} else {
+				// Теперь isAppLoaderDone будет срабатывать, когда isOtherContentLoaded станет true
 				if (isAppLoaderDone && !shouldRenderAppLoader) {
 					timer = setTimeout(() => setIsContentActuallyVisible(true), 300)
 				} else {
@@ -138,7 +143,7 @@ export const RootLayout = () => {
 				}}
 			>
 				<Suspense fallback={null}>
-					<Outlet />
+					<ContentWrapper onContentReady={handleContentLoaded} />
 				</Suspense>
 			</motion.div>
 			{/* </AnimatePresence> */}

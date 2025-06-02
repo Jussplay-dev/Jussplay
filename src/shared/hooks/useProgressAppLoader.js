@@ -9,19 +9,29 @@ export const useProgressAppLoader = isContentReady => {
 	const frameId = useRef(null)
 
 	useEffect(() => {
+		if (!isContentReady) {
+			// Если контент еще не готов (или сброшен)
+			setProgress(0)
+			setIsDone(false)
+			setShouldRender(true)
+		}
+	}, [isContentReady])
+
+	useEffect(() => {
 		let startTime = null
 		const duration = 1500 // Минимальная длительность анимации (1.5 секунды)
 		const accelerationFactor = 0.02 // Фактор ускорения, когда контент готов
 
 		const animateProgress = currentTime => {
 			if (!startTime) startTime = currentTime
-			const elapsedTime = currentTime - startTime
 
+			const elapsedTime = currentTime - startTime
 			let newProgress
 
 			if (isContentReady) {
 				// Если контент готов, быстро доводим прогресс до 100%
-				newProgress = Math.min(progress + (progress < 90 ? 2 : 1), 100) // Ускоряем в конце
+				// Ускоряем в конце, но только если прогресс еще не 100
+				newProgress = Math.min(progress + (progress < 90 ? 2 : 1), 100)
 			} else {
 				// Иначе, плавно увеличиваем прогресс до 90-95%
 				// Не доводим до 100%, пока контент не будет готов
@@ -31,7 +41,6 @@ export const useProgressAppLoader = isContentReady => {
 					targetPartialProgress
 				)
 			}
-
 			setProgress(Math.floor(newProgress))
 
 			if (newProgress >= 100) {
@@ -48,7 +57,7 @@ export const useProgressAppLoader = isContentReady => {
 		return () => {
 			cancelAnimationFrame(frameId.current)
 		}
-	}, [isContentReady, progress]) // Добавили isContentReady и progress в зависимости
+	}, [isContentReady, progress])
 
 	const handleTransitionEnd = () => {
 		if (isDone) {
