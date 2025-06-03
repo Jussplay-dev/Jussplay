@@ -17,7 +17,9 @@ export const AppLoader = ({
 				className={styles.spinner}
 				style={{
 					borderRadius,
-					background: `conic-gradient(#6c5ce7 ${progress}%, #222 ${progress}%)`,
+					background: `conic-gradient(#6c5ce7 ${
+						isReady ? progress : 1
+					}%, #222 ${isReady ? progress : 1}%)`,
 				}}
 			></div>
 			<span className={styles.text}>

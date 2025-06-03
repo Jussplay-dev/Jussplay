@@ -29,6 +29,7 @@ function LogoLottie() {
 		rendererSettings: {
 			preserveAspectRatio: 'xMidYMid slice',
 		},
+		caches: true,
 	}
 
 	return (
