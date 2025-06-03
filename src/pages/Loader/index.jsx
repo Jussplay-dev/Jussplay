@@ -60,7 +60,7 @@ function Loader({ onComplete }) {
 	// Создаём «взрыв» точек через THREE.js
 	const initiateExplosion = () => {
 		const movementSpeed = 30
-		const totalObjects = 5000
+		const totalObjects = 3000
 		const objectSize = 3
 		let dirs = []
 		let parts = []

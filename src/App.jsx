@@ -96,7 +96,6 @@ export const RootLayout = () => {
 			{/* Эти элементы всегда рендерятся, на всех страницах */}
 			<AudioControl />
 
-			{/* <AnimatePresence mode='wait'> */}
 			{showMainPageLoader && (
 				<motion.div
 					key='main-page-loader'
@@ -147,7 +146,6 @@ export const RootLayout = () => {
 					<ContentWrapper onContentReady={handleContentLoaded} />
 				</Suspense>
 			</motion.div>
-			{/* </AnimatePresence> */}
 		</>
 	)
 }
