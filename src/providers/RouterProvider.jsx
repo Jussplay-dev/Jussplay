@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 import { RootLayout } from '../App'
 import { CustomCursor } from '../components/cursor'
 import { CustomScroll } from '../components/scroll/CustomScroll'
-import { pages } from '../constants/pages'
+import { pages } from '../constants/pages.jsx'
 import stylesError from '../pages/Error/errorPage.module.scss'
 
 const BubbleError = () => {
@@ -143,6 +143,10 @@ const router = createBrowserRouter([
 			{
 				path: 'copywriting',
 				element: <pages.Copywriting />,
+			},
+			{
+				path: 'test-page',
+				element: <pages.ExperimentalPage3D />,
 			},
 			{
 				path: '*',
