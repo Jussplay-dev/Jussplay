@@ -47,7 +47,7 @@ export const ExperimentalSection = () => {
 		controls.enableZoom = false
 		controls.enablePan = false
 		// controls.dampingFactor = 0.05 // Коэффициент демпфирования (опционально)
-		controls.screenSpacePanning = true // Для панорамирования в 2D вместо 3D (опционально)
+		controls.screenSpacePanning = false // Для панорамирования в 2D вместо 3D (опционально)
 		// controls.maxPolarAngle = Math.PI / 2; // Ограничение вращения по вертикали (опционально)
 
 		// *** ИНИЦИАЛИЗАЦИЯ RAYCASTING ***
