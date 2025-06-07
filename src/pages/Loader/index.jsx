@@ -29,34 +29,6 @@ function Loader({ onComplete }) {
 		return () => clearInterval(interval)
 	}, [])
 
-	// Обработчик клика «Start journey»
-	const handleButtonClick = () => {
-		// Скрываем цифры и кнопку
-		setHidden(true)
-		// Запускаем Lottie-анимацию
-		setIsLottiePlaying(true)
-
-		// Если есть аудио, проигрываем
-		if (audioRef.current) {
-			audioRef.current.play().catch(() => {
-				// если браузер заблокировал autoplay, можно обработать ошибку
-			})
-		}
-
-		// Запускаем эффект взрыва через THREE.js
-		initiateExplosion()
-
-		// Сразу говорим RootLayout, что лоадер главной страницы «закончился»
-		if (typeof onComplete === 'function') {
-			onComplete()
-		}
-
-		// Через 4500 мс переходим на '/home'
-		setTimeout(() => {
-			navigate('/home')
-		}, 4500)
-	}
-
 	// Создаём «взрыв» точек через THREE.js
 	const initiateExplosion = () => {
 		const movementSpeed = 30
@@ -130,6 +102,7 @@ function Loader({ onComplete }) {
 			parts.forEach(part => part.update())
 			renderer.render(scene, camera)
 		}
+
 		render()
 
 		// Обработчик ресайза
@@ -146,6 +119,34 @@ function Loader({ onComplete }) {
 			container.removeChild(renderer.domElement)
 			renderer.dispose()
 		}
+	}
+
+	// Обработчик клика «Start journey»
+	const handleButtonClick = () => {
+		// Скрываем цифры и кнопку
+		setHidden(true)
+		// Запускаем Lottie-анимацию
+		setIsLottiePlaying(true)
+
+		// Если есть аудио, проигрываем
+		if (audioRef.current) {
+			audioRef.current.play().catch(() => {
+				// если браузер заблокировал autoplay, можно обработать ошибку
+			})
+		}
+
+		// Запускаем эффект взрыва через THREE.js
+		initiateExplosion()
+
+		// Сразу говорим RootLayout, что лоадер главной страницы «закончился»
+		if (typeof onComplete === 'function') {
+			onComplete()
+		}
+
+		// Через 4500 мс переходим на '/home'
+		setTimeout(() => {
+			navigate('/home')
+		}, 4500)
 	}
 
 	return (

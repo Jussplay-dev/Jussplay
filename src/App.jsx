@@ -8,7 +8,7 @@ import {
 	useState,
 } from 'react'
 import { useLocation } from 'react-router-dom'
-import { pages } from './constants/pages'
+import { pages } from './constants/pages.jsx'
 import { useProgressAppLoader } from './shared/hooks/useProgressAppLoader'
 import { AppLoader } from './shared/ui/AppLoader'
 import { AudioControl } from './shared/ui/AudioControl'
