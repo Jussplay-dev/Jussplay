@@ -1,70 +1,115 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { Container } from './WrapperContainer'
 import styles from './styles.module.scss'
 
 export const ExperimentalSection = () => {
 	const containerCubeRef = useRef(null)
+	const loadedModel = useRef(null)
 
 	useEffect(() => {
 		if (!containerCubeRef.current) return
 
 		// 1. Сцена
 		const scene = new THREE.Scene()
-
-		scene.background = new THREE.Color('transparent')
-
-		console.log(scene)
+		scene.background = new THREE.Color('black')
 
 		// 2. Камера
 		const containerWidth = containerCubeRef.current.clientWidth
 		const containerHeight = containerCubeRef.current.clientHeight
 
 		const camera = new THREE.PerspectiveCamera(
-			75,
-			containerWidth / containerHeight, // Аспект соотношение контейнера
-			0.05,
+			50,
+			containerWidth / containerHeight,
+			// *** ИЗМЕНЕНО: ближняя плоскость отсечения ***
+			0.1, // Уменьшено с 1 до 0.1, чтобы избежать отсечения, когда камера близко к объекту
 			1000
 		)
-		camera.position.z = 1.5
+		// *** ИЗМЕНЕНО: позиция камеры по Z ***
+		// Отрегулируйте это значение, чтобы камера оказалась снаружи модели.
+		// Начните с большего значения (например, 20-50), если модель кажется очень большой,
+		// и уменьшайте, пока не увидите модель целиком.
+		camera.position.z = 5 // Пример: 5 единиц от начала координат
 
 		// 3. Рендерер
-		const renderer = new THREE.WebGLRenderer({ antialias: true }) // antialias для сглаживания
+		const renderer = new THREE.WebGLRenderer({ antialias: true })
 		renderer.setSize(containerWidth, containerHeight)
-		containerCubeRef.current.appendChild(renderer.domElement) // Добавляем DOM-элемент рендерера в наш контейнер
+		containerCubeRef.current.appendChild(renderer.domElement)
 
-		// 4. Объект (Куб)
-		const geometry = new THREE.BoxGeometry()
-		const material = new THREE.MeshBasicMaterial({ color: '#6c5ce7' }) // Hex-цвет для лучшей практики
-		const cube = new THREE.Mesh(geometry, material)
-		scene.add(cube)
+		// 4. Загрузка 3D-модели
+		const loader = new OBJLoader()
 
-		//  ИНИЦИАЛИЗАЦИЯ ORBITCONTROLS
+		loader.load(
+			'/JPD-Static1.obj', // Убедитесь, что этот путь верен относительно вашей публичной/статической папки
+			obj => {
+				loadedModel.current = obj
+
+				obj.traverse(child => {
+					if (child.isMesh) {
+						// Устанавливаем материал для всех мешей модели
+						// side: THREE.DoubleSide помогает рендерить обе стороны полигонов,
+						// что полезно, если нормали модели смотрят в "неправильную" сторону
+						child.material = new THREE.MeshBasicMaterial({
+							color: 'white',
+							side: THREE.DoubleSide,
+						})
+					}
+				})
+
+				// *** ИЗМЕНЕНО: Масштабируем модель ***
+				// Это самый важный шаг. Модели часто импортируются с огромными или очень маленькими размерами.
+				// Начните с очень маленького масштаба (например, 0.01 или 0.001) и увеличивайте его.
+				loadedModel.current.scale.set(0.01, 0.01, 0.01) // Уменьшаем модель в 100 раз
+
+				// Центрируем модель в начале координат
+				const box = new THREE.Box3().setFromObject(loadedModel.current)
+				const center = new THREE.Vector3()
+				box.getCenter(center)
+				loadedModel.current.position.sub(center)
+
+				scene.add(loadedModel.current)
+
+				console.log('3D модель успешно загружена!', loadedModel.current)
+				// Выводим размер модели после масштабирования для отладки
+				const currentSize = new THREE.Vector3()
+				new THREE.Box3().setFromObject(loadedModel.current).getSize(currentSize)
+				console.log(
+					'Размер модели (после масштабирования):',
+					currentSize.x.toFixed(2),
+					currentSize.y.toFixed(2),
+					currentSize.z.toFixed(2)
+				)
+			},
+			xhr => {
+				console.log((xhr.loaded / xhr.total) * 100 + '% загружено')
+			},
+			error => {
+				console.error('Ошибка загрузки 3D модели:', error)
+			}
+		)
+
+		// ИНИЦИАЛИЗАЦИЯ ORBITCONTROLS
 		const controls = new OrbitControls(camera, renderer.domElement)
-
-		controls.enableDamping = true // Для плавного вращения (опционально)
+		controls.enableDamping = true
 		controls.enableZoom = false
 		controls.enablePan = false
-		// controls.dampingFactor = 0.05 // Коэффициент демпфирования (опционально)
-		controls.screenSpacePanning = false // Для панорамирования в 2D вместо 3D (опционально)
-		// controls.maxPolarAngle = Math.PI / 2; // Ограничение вращения по вертикали (опционально)
+		controls.screenSpacePanning = false
 
-		// *** ИНИЦИАЛИЗАЦИЯ RAYCASTING ***
+		// ИНИЦИАЛИЗАЦИЯ RAYCASTING
 		const raycaster = new THREE.Raycaster()
 		const mouse = new THREE.Vector2()
 
 		// 5. Анимация
-		let animationFrameId // Для отслеживания ID кадра анимации
+		let animationFrameId
 		const animate = () => {
-			animationFrameId = requestAnimationFrame(animate) // Сохраняем ID
-
+			animationFrameId = requestAnimationFrame(animate)
 			controls.update()
-
 			renderer.render(scene, camera)
 		}
 
-		animate() // Запускаем анимацию
+		animate()
 
 		// 6. Обработка изменения размеров окна (или контейнера)
 		const handleResize = () => {
@@ -72,12 +117,12 @@ export const ExperimentalSection = () => {
 			const newContainerHeight = containerCubeRef.current.clientHeight
 
 			camera.aspect = newContainerWidth / newContainerHeight
-			camera.updateProjectionMatrix() // Обновляем матрицу проекции после изменения аспекта
+			camera.updateProjectionMatrix()
 			renderer.setSize(newContainerWidth, newContainerHeight)
 			controls.update()
 		}
 
-		window.addEventListener('resize', handleResize) // Слушаем изменение размера окна
+		window.addEventListener('resize', handleResize)
 
 		const onCanvasClick = event => {
 			const rect = renderer.domElement.getBoundingClientRect()
@@ -86,34 +131,29 @@ export const ExperimentalSection = () => {
 
 			raycaster.setFromCamera(mouse, camera)
 
-			const intersects = raycaster.intersectObjects([cube])
+			const objectsToIntersect = loadedModel.current
+				? loadedModel.current.children
+				: []
+			const intersects = raycaster.intersectObjects(objectsToIntersect, true)
 
 			if (intersects.length > 0) {
-				const intersectedObject = intersects[0].object
-				const face = intersects[0].face
-				const faceIndex = intersects[0].faceIndex
+				const intersectedObject = intersects[0].object // Сам объект, на который кликнули
+				const face = intersects[0].face // Объект, содержащий информацию о грани (нормали, материал)
+				const faceIndex = intersects[0].faceIndex // Индекс грани (для BoxGeometry)
 
 				console.log('Кликнули на объект:', intersectedObject)
-				console.log('Кликнули на грань:', face)
+				console.log('Кликнули на грань (инфо):', face)
 				console.log('Индекс грани:', faceIndex)
+				console.log(
+					'Точка пересечения в мировых координатах:',
+					intersects[0].point
+				)
 
-				let sideName = 'Неизвестная сторона'
-
-				if (faceIndex === 0 || faceIndex === 1) {
-					sideName = 'Правая сторона (X+)'
-				} else if (faceIndex === 2 || faceIndex === 3) {
-					sideName = 'Левая сторона (X-)'
-				} else if (faceIndex === 4 || faceIndex === 5) {
-					sideName = 'Верхняя сторона (Y+)'
-				} else if (faceIndex === 6 || faceIndex === 7) {
-					sideName = 'Нижняя сторона (Y-)'
-				} else if (faceIndex === 8 || faceIndex === 9) {
-					sideName = 'Передняя сторона (Z+)'
-				} else if (faceIndex === 10 || faceIndex === 11) {
-					sideName = 'Задняя сторона (Z-)'
-				}
-
-				alert(`Вы кликнули на: ${sideName}`)
+				alert(
+					`Вы кликнули на часть модели: ${
+						intersectedObject.name || intersectedObject.uuid
+					}`
+				)
 			}
 		}
 
@@ -121,15 +161,26 @@ export const ExperimentalSection = () => {
 
 		// 7. Функция очистки при размонтировании компонента
 		return () => {
-			window.removeEventListener('resize', handleResize) // Удаляем слушателя события
-			cancelAnimationFrame(animationFrameId) // Отменяем цикл анимации
+			window.removeEventListener('resize', handleResize)
+			renderer.domElement.removeEventListener('click', onCanvasClick)
+			cancelAnimationFrame(animationFrameId)
 			if (containerCubeRef.current) {
-				containerCubeRef.current.removeChild(renderer.domElement) // Удаляем DOM-элемент рендерера
+				containerCubeRef.current.removeChild(renderer.domElement)
 			}
-			// Очистка памяти для Three.js объектов (опционально, но хорошая практика для сложных сцен)
-			geometry.dispose()
-			material.dispose()
-			// renderer.dispose(); // Может быть не нужно, если рендерер всегда будет один, но для чистоты можно
+			if (loadedModel.current) {
+				scene.remove(loadedModel.current)
+				loadedModel.current.traverse(child => {
+					if (child.isMesh) {
+						child.geometry.dispose()
+						// Удаляем материалы, если они не используются другими объектами
+						if (Array.isArray(child.material)) {
+							child.material.forEach(m => m.dispose())
+						} else {
+							child.material.dispose()
+						}
+					}
+				})
+			}
 			controls.dispose()
 		}
 	}, [])
