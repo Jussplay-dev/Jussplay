@@ -1,12 +1,16 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import * as THREE from 'three'
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { faceIndexRange } from '../utils/faceIndexRange'
 import styles from './styles.module.scss'
 
 export const CubeUi = () => {
 	const containerCubeRef = useRef(null)
 	const loadedModel = useRef(null)
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		if (!containerCubeRef.current) return
@@ -53,7 +57,7 @@ export const CubeUi = () => {
 						// side: THREE.DoubleSide помогает рендерить обе стороны полигонов,
 						// что полезно, если нормали модели смотрят в "неправильную" сторону
 						child.material = new THREE.MeshBasicMaterial({
-							color: 'white',
+							color: 'red',
 							side: THREE.DoubleSide,
 						})
 					}
@@ -92,7 +96,9 @@ export const CubeUi = () => {
 				)
 			},
 			xhr => {
-				console.log((xhr.loaded / xhr.total) * 100 + '% загружено')
+				const loadedXhrModel = (xhr.loaded / xhr.total) * 100
+
+				console.log(`Model loaded ${loadedXhrModel}%`)
 			},
 			error => {
 				console.error('Ошибка загрузки 3D модели:', error)
@@ -158,11 +164,67 @@ export const CubeUi = () => {
 					intersects[0].point
 				)
 
-				// alert(
-				// 	`Вы кликнули на часть модели: ${
-				// 		intersectedObject.name || intersectedObject.uuid
-				// 	}`
-				// )
+				// Lamp side
+				const minFaceIndexLampSide = 898
+				const maxFaceIndxLampSide = 1090
+				// Game side
+				const minFaceIndexGameSide = 3465
+				const maxFaceIndexGameSide = 3700
+				// Letter P side
+				const minFaceIndexLetterPSide = 0
+				const maxFaceIndexLetterPSide = 11
+				// Letter J side
+				const minFaceIndexLetterJSide = 2100
+				const maxFaceIndexLetterJSide = 2500
+				// Letter D Side
+				const minFaceIndexLetterDSide = 1200
+				const maxFaceIndexLetterDSide = 1400
+
+				const isWithRangeLampSide = faceIndexRange(
+					faceIndex,
+					minFaceIndexLampSide,
+					maxFaceIndxLampSide
+				)
+
+				const isWithRangeGameSide = faceIndexRange(
+					faceIndex,
+					minFaceIndexGameSide,
+					maxFaceIndexGameSide
+				)
+
+				const isWithRangeLetterPSide = faceIndexRange(
+					faceIndex,
+					minFaceIndexLetterPSide,
+					maxFaceIndexLetterPSide
+				)
+
+				const isWithRangeLetterJSide = faceIndexRange(
+					faceIndex,
+					minFaceIndexLetterJSide,
+					maxFaceIndexLetterJSide
+				)
+
+				const isWithRangeLetterDSide = faceIndexRange(
+					faceIndex,
+					minFaceIndexLetterDSide,
+					maxFaceIndexLetterDSide
+				)
+
+				if (isWithRangeLampSide) {
+					navigate('/service')
+				} else if (isWithRangeGameSide) {
+					navigate('/blockchain')
+				} else if (isWithRangeLetterPSide) {
+					navigate('/contact-us')
+				} else if (isWithRangeLetterJSide) {
+					navigate('/about-us')
+				} else if (faceIndex === 3347 || faceIndex === 3348) {
+					navigate('/')
+				} else if (isWithRangeLetterDSide) {
+					navigate('/')
+				} else {
+					navigate('/home')
+				}
 			}
 		}
 

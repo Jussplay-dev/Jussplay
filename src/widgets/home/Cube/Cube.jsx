@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useRef, useState } from 'react'
 import { useSectionVisibility } from '../../../shared/hooks/useSectionVisibility'
 import { IconEllipse } from '../../../shared/ui/Icons'
