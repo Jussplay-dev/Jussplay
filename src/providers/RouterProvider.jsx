@@ -49,7 +49,7 @@ const router = createBrowserRouter([
 				element: <pages.Home />,
 			},
 			{
-				path: 'contactus',
+				path: 'contact-us',
 				element: <pages.ContactUs />,
 			},
 			{
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
 				element: <pages.Career />,
 			},
 			{
-				path: 'aboutus',
+				path: 'about-us',
 				element: <pages.About />,
 			},
 			{
