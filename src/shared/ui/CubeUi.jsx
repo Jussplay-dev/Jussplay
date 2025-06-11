@@ -210,19 +210,19 @@ export const CubeUi = () => {
 					maxFaceIndexLetterDSide
 				)
 
-				// if (isWithRangeLampSide) {
-				// 	navigate('/service')
-				// } else if (isWithRangeGameSide) {
-				// 	navigate('/blockchain')
-				// } else if (isWithRangeLetterPSide) {
-				// 	navigate('/contact-us')
-				// } else if (isWithRangeLetterJSide) {
-				// 	navigate('/about-us')
-				// } else if (faceIndex === 3347 || faceIndex === 3348) {
-				// 	navigate('/')
-				// } else if (isWithRangeLetterDSide) {
-				// 	navigate('/')
-				// }
+				if (isWithRangeLampSide) {
+					navigate('/service')
+				} else if (isWithRangeGameSide) {
+					navigate('/blockchain')
+				} else if (isWithRangeLetterPSide) {
+					navigate('/contact-us')
+				} else if (isWithRangeLetterJSide) {
+					navigate('/about-us')
+				} else if (faceIndex === 3347 || faceIndex === 3348) {
+					navigate('/')
+				} else if (isWithRangeLetterDSide) {
+					navigate('/')
+				}
 			}
 		}
 
