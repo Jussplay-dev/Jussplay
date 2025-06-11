@@ -23,7 +23,7 @@ export const CubeUi = () => {
 		const containerHeight = containerCubeRef.current.clientHeight
 
 		const camera = new THREE.PerspectiveCamera(
-			60,
+			85,
 			containerWidth / containerHeight,
 			// *** ИЗМЕНЕНО: ближняя плоскость отсечения ***
 			0.1, // Уменьшено с 1 до 0.1, чтобы избежать отсечения, когда камера близко к объекту
@@ -210,21 +210,19 @@ export const CubeUi = () => {
 					maxFaceIndexLetterDSide
 				)
 
-				if (isWithRangeLampSide) {
-					navigate('/service')
-				} else if (isWithRangeGameSide) {
-					navigate('/blockchain')
-				} else if (isWithRangeLetterPSide) {
-					navigate('/contact-us')
-				} else if (isWithRangeLetterJSide) {
-					navigate('/about-us')
-				} else if (faceIndex === 3347 || faceIndex === 3348) {
-					navigate('/')
-				} else if (isWithRangeLetterDSide) {
-					navigate('/')
-				} else {
-					navigate('/home')
-				}
+				// if (isWithRangeLampSide) {
+				// 	navigate('/service')
+				// } else if (isWithRangeGameSide) {
+				// 	navigate('/blockchain')
+				// } else if (isWithRangeLetterPSide) {
+				// 	navigate('/contact-us')
+				// } else if (isWithRangeLetterJSide) {
+				// 	navigate('/about-us')
+				// } else if (faceIndex === 3347 || faceIndex === 3348) {
+				// 	navigate('/')
+				// } else if (isWithRangeLetterDSide) {
+				// 	navigate('/')
+				// }
 			}
 		}
 

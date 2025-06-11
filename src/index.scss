@@ -20,12 +20,18 @@
 
 @font-face {
 	font-family: 'Hell';
-	src: url('../public/fonts/HelveticaNeueLight.otf'), format('opentype');
+	src: url('../public/fonts/HelveticaNeueLight.otf') format('opentype');
 }
 
 @font-face {
 	font-family: 'Space Grotesk';
-	src: url('./assets/SpaceGrotesk-VariableFont_wght.ttf') format('truetype');
+	src: url('../public/fonts/SpaceGrotesk-VariableFont_wght.ttf')
+		format('truetype');
+}
+
+@font-face {
+	font-family: 'Unbounded';
+	src: url('../public/fonts/Unbounded-Regular.ttf') format('truetype');
 }
 
 // html {
