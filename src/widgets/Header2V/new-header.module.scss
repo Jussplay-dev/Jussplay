@@ -32,8 +32,12 @@
 			}
 
 			&_logo {
-				width: 58px;
-				height: 64px;
+				a {
+					img {
+						width: 58px;
+						height: 64px;
+					}
+				}
 			}
 			li {
 				a {

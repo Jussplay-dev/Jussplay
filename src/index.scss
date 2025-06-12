@@ -30,16 +30,14 @@
 }
 
 @font-face {
+	font-family: 'Space Grotesk Regular';
+	src: url('../public/fonts/SpaceGrotesk-Regular.ttf') format('truetype');
+}
+
+@font-face {
 	font-family: 'Unbounded';
 	src: url('../public/fonts/Unbounded-Regular.ttf') format('truetype');
 }
-
-// html {
-// 	//overflow-x: hidden;
-// 	// @media screen and (max-width:520px) {
-// 	//   overflow-x: hidden !important;
-// 	// }
-// }
 
 *,
 body {
