@@ -4,7 +4,7 @@ import { Container } from '../../shared/ui/WrapperContainer'
 
 export const ServiceAbout = ({ styles }) => {
 	return (
-		<section className={styles.service_about}>
+		<section className={styles.service_section_about}>
 			<TitleDifferentPage
 				title={'CES'}
 				style={styles.title_different_service_page}
@@ -16,6 +16,7 @@ export const ServiceAbout = ({ styles }) => {
 			<Container>
 				<div className={styles.service_wrapper_min_ellipse}>
 					<div className={styles.service_subtitle}>
+						{/* H2 set props children */}
 						<h2>
 							Разрабатываем цифровые продукты с продуманным дизайном, технически
 							сложным функционалом и внешними интеграциями. Сочетаем

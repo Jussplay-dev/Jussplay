@@ -5,10 +5,17 @@
 	}
 }
 
-.service {
+// Section styles
+.service_section {
 	&_about {
-		margin: 100px 0 120px 0;
+		margin: 150px 0 240px 0;
 	}
+	&_order {
+		padding: 30px 0;
+	}
+}
+// Components styles
+.service {
 	&_ellipse {
 		position: absolute;
 		top: 0;
@@ -53,7 +60,7 @@
 .title_different_service {
 	&_page {
 		position: absolute;
-		top: -5%;
+		top: -1.5%;
 		left: -8%;
 		color: #f871e6;
 		font-family: 'Unbounded';
@@ -67,7 +74,7 @@
 	}
 	&_scend_page {
 		position: absolute;
-		top: -5%;
+		top: -1.5%;
 		right: -8%;
 		color: #c45974;
 		font-family: 'Unbounded';
@@ -81,6 +88,7 @@
 	}
 }
 
+// Service about achievement
 .service_about_achievement {
 	&_row {
 		display: flex;
@@ -130,6 +138,123 @@
 
 		&:last-child {
 			margin-left: -25%;
+		}
+	}
+}
+
+// Service order
+.service_order {
+	&_row {
+		display: grid;
+		grid-template-columns: 322px auto;
+		place-content: space-between;
+		gap: 133px;
+	}
+	&_nav {
+		ul {
+			li {
+				color: #fff;
+				font-family: 'Inter';
+				font-size: 13px;
+				font-style: normal;
+				font-weight: 500;
+				line-height: 130%; /* 16.9px */
+				text-transform: uppercase;
+
+				transition: color 0.3s ease-in;
+
+				&:hover {
+					color: #f871e6;
+				}
+
+				&:not(:last-child) {
+					margin-bottom: 20px;
+				}
+			}
+		}
+	}
+
+	&_list {
+		h1,
+		h2 {
+			font-family: 'SGrotReg', sans-serif;
+			font-style: normal;
+			line-height: 130%; /* 62.4px */
+
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			display: inline-block;
+			color: #fff;
+			font-size: 48px;
+			font-weight: 700;
+
+			transition: color 0.3s ease-out;
+
+			&:hover {
+				color: #f871e6;
+			}
+		}
+		h2 {
+			color: #fff;
+			font-size: 14px;
+			font-weight: 400;
+
+			margin: 40px 0 60px 0;
+		}
+
+		&:not(:last-child) {
+			margin-bottom: 200px;
+		}
+
+		&_items {
+		}
+
+		&_sub {
+			&_items_row {
+				display: flex;
+				justify-content: space-between;
+
+				padding: 0 0 40px 0;
+				border-bottom: 1px solid #fff;
+				&:not(:last-child) {
+					margin-bottom: 40px;
+				}
+			}
+			&_item {
+				h3 {
+					color: #fff;
+					font-family: 'SGrotReg', sans-serif;
+					font-size: 23px;
+					font-style: normal;
+					font-weight: 700;
+					line-height: 130%; /* 29.9px */
+
+					margin-bottom: 10px;
+				}
+				p {
+					color: #fff;
+					font-family: 'SGrotReg', sans-serif;
+					font-size: 16px;
+					font-style: normal;
+					font-weight: 400;
+					line-height: 130%; /* 20.8px */
+
+					opacity: 0.7;
+				}
+			}
+			&_item_price {
+				h3 {
+					color: #fff;
+					text-align: right;
+					font-family: 'Space Grotesk', sans-serif;
+					font-size: 23px;
+					font-style: normal;
+					font-weight: 700;
+					line-height: 130%; /* 29.9px */
+				}
+			}
 		}
 	}
 }

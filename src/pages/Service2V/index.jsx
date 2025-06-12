@@ -6,6 +6,7 @@ import { MainContent } from '../../shared/ui/MainContent'
 import { WrapperPage } from '../../shared/ui/WrapperContainer'
 import { Header } from '../../widgets/Header2V/Header'
 import { ServiceAbout } from '../../widgets/service2/ServiceAbout'
+import { ServiceOrder } from '../../widgets/service2/ServiceOrder'
 import styles from './service2V.module.scss'
 
 const Service2V = () => {
@@ -15,6 +16,7 @@ const Service2V = () => {
 				<Header />
 				<MainContent styles={styles.main_service}>
 					<ServiceAbout styles={styles} />
+					<ServiceOrder styles={styles} />
 				</MainContent>
 				<Footer />
 				<IconEllipse styles={styles.service_ellipse} />
