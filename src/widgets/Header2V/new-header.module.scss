@@ -4,7 +4,7 @@
 	width: 100%;
 	z-index: 100;
 	padding: 30px 0;
-	font-family: 'Space Grotesk';
+	font-family: 'SGrotReg';
 	transition: transform 0.4s ease;
 	transform: translateX(0);
 	&.hidden {
@@ -32,8 +32,12 @@
 			}
 
 			&_logo {
-				width: 58px;
-				height: 64px;
+				a {
+					img {
+						width: 58px;
+						height: 64px;
+					}
+				}
 			}
 			li {
 				a {

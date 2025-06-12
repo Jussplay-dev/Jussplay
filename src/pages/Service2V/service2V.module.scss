@@ -1,0 +1,260 @@
+.main {
+	&_service {
+		position: relative;
+		padding: 80px 0;
+	}
+}
+
+// Section styles
+.service_section {
+	&_about {
+		margin: 150px 0 240px 0;
+	}
+	&_order {
+		padding: 30px 0;
+	}
+}
+// Components styles
+.service {
+	&_ellipse {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 1300px;
+		background: #3a105f;
+		filter: blur(611px);
+		opacity: 0.3;
+	}
+	&_wrapper_min_ellipse {
+		position: relative;
+	}
+	&_min_ellipse {
+		position: absolute;
+		top: -76%;
+		left: 17%;
+		z-index: 4;
+
+		width: 676.579px;
+		height: 1217.794px;
+		transform: rotate(30deg);
+		border: 1px solid #9b98a4;
+		border-radius: 70%;
+	}
+	&_subtitle {
+		max-width: 400px;
+		margin-top: 250px;
+		margin-bottom: 289px;
+		z-index: 10;
+		h2 {
+			color: #9b98a4;
+			font-size: 17px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 130%; /* 22.1px */
+		}
+	}
+}
+
+// Title Service
+.title_different_service {
+	&_page {
+		position: absolute;
+		top: -1.5%;
+		left: -8%;
+		color: #f871e6;
+		font-family: 'Unbounded';
+		font-size: 288px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 130%; /* 374.4px */
+		letter-spacing: -4.32px;
+		text-transform: uppercase;
+		z-index: 10;
+	}
+	&_scend_page {
+		position: absolute;
+		top: -1.5%;
+		right: -8%;
+		color: #c45974;
+		font-family: 'Unbounded';
+		font-size: 288px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 130%; /* 374.4px */
+		letter-spacing: -4.32px;
+		text-transform: uppercase;
+		z-index: 10;
+	}
+}
+
+// Service about achievement
+.service_about_achievement {
+	&_row {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		margin-left: -13%;
+
+		// width: 1020px;
+
+		position: relative;
+		z-index: 10;
+	}
+	&_item {
+		&:first-child {
+			flex: 0 0 405px;
+		}
+		h3 {
+			display: flex;
+			align-items: center;
+			gap: 44px;
+			color: #f871e6;
+			font-size: 100px;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 130%; /* 130px */
+			text-transform: uppercase;
+
+			margin-bottom: 20px;
+
+			&::before {
+				content: '';
+				width: 34px;
+				height: 34px;
+				background-color: #c45974;
+				border-radius: 100%;
+				margin-top: 35px;
+			}
+		}
+		h4 {
+			color: #fff;
+			font-size: 17px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 130%; /* 22.1px */
+			text-align: end;
+		}
+
+		&:last-child {
+			margin-left: -25%;
+		}
+	}
+}
+
+// Service order
+.service_order {
+	&_row {
+		display: grid;
+		grid-template-columns: 322px auto;
+		place-content: space-between;
+		gap: 133px;
+	}
+	&_nav {
+		ul {
+			li {
+				color: #fff;
+				font-family: 'Inter';
+				font-size: 13px;
+				font-style: normal;
+				font-weight: 500;
+				line-height: 130%; /* 16.9px */
+				text-transform: uppercase;
+
+				transition: color 0.3s ease-in;
+
+				&:hover {
+					color: #f871e6;
+				}
+
+				&:not(:last-child) {
+					margin-bottom: 20px;
+				}
+			}
+		}
+	}
+
+	&_list {
+		h1,
+		h2 {
+			font-family: 'SGrotReg', sans-serif;
+			font-style: normal;
+			line-height: 130%; /* 62.4px */
+
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			display: inline-block;
+			color: #fff;
+			font-size: 48px;
+			font-weight: 700;
+
+			transition: color 0.3s ease-out;
+
+			&:hover {
+				color: #f871e6;
+			}
+		}
+		h2 {
+			color: #fff;
+			font-size: 14px;
+			font-weight: 400;
+
+			margin: 40px 0 60px 0;
+		}
+
+		&:not(:last-child) {
+			margin-bottom: 200px;
+		}
+
+		&_items {
+		}
+
+		&_sub {
+			&_items_row {
+				display: flex;
+				justify-content: space-between;
+
+				padding: 0 0 40px 0;
+				border-bottom: 1px solid #fff;
+				&:not(:last-child) {
+					margin-bottom: 40px;
+				}
+			}
+			&_item {
+				h3 {
+					color: #fff;
+					font-family: 'SGrotReg', sans-serif;
+					font-size: 23px;
+					font-style: normal;
+					font-weight: 700;
+					line-height: 130%; /* 29.9px */
+
+					margin-bottom: 10px;
+				}
+				p {
+					color: #fff;
+					font-family: 'SGrotReg', sans-serif;
+					font-size: 16px;
+					font-style: normal;
+					font-weight: 400;
+					line-height: 130%; /* 20.8px */
+
+					opacity: 0.7;
+				}
+			}
+			&_item_price {
+				h3 {
+					color: #fff;
+					text-align: right;
+					font-family: 'Space Grotesk', sans-serif;
+					font-size: 23px;
+					font-style: normal;
+					font-weight: 700;
+					line-height: 130%; /* 29.9px */
+				}
+			}
+		}
+	}
+}

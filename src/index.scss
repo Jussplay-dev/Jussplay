@@ -2,44 +2,44 @@
 
 @font-face {
 	font-family: 'SGrotReg';
-	src: url('../fonts/SpaceGrotesk-Regular.ttf') format('truetype');
+	src: url('/fonts/SpaceGrotesk-Regular.ttf') format('truetype');
 }
 @font-face {
 	font-family: 'SGrotBold';
-	src: url('../public/fonts/SpaceGrotesk-Bold.ttf') format('truetype');
+	src: url('/fonts/SpaceGrotesk-Bold.ttf') format('truetype');
 }
 @font-face {
 	font-family: 'SGrotLight';
-	src: url('../public/fonts/SpaceGrotesk-Light.ttf') format('truetype');
+	src: url('/fonts/SpaceGrotesk-Light.ttf') format('truetype');
 }
 
 @font-face {
 	font-family: 'Inter';
-	src: url('../public/fonts/Inter-Regular.ttf'), format('truetype');
+	src: url('/fonts/Inter-Regular.ttf'), format('truetype');
 }
 
 @font-face {
 	font-family: 'Hell';
-	src: url('../public/fonts/HelveticaNeueLight.otf') format('opentype');
+	src: url('/fonts/HelveticaNeueLight.otf') format('opentype');
 }
 
-@font-face {
-	font-family: 'Space Grotesk';
-	src: url('../public/fonts/SpaceGrotesk-VariableFont_wght.ttf')
-		format('truetype');
-}
+// @font-face {
+// 	font-family: 'SpaceGrotesk';
+// 	src: url('/fonts/Space_Grotesk/static/SpaceGrotesk-Regular.ttf')
+// 		format('truetype');
+// 	font-style: normal;
+// 	font-weight: normal;
+// }
+
+// @font-face {
+// 	font-family: 'Space Grotesk';
+// 	src: url('../public/fonts/SpaceGrotesk-Regular.ttf') format('truetype');
+// }
 
 @font-face {
 	font-family: 'Unbounded';
 	src: url('../public/fonts/Unbounded-Regular.ttf') format('truetype');
 }
-
-// html {
-// 	//overflow-x: hidden;
-// 	// @media screen and (max-width:520px) {
-// 	//   overflow-x: hidden !important;
-// 	// }
-// }
 
 *,
 body {

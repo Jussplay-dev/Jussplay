@@ -65,6 +65,10 @@ const router = createBrowserRouter([
 				element: <pages.Service />,
 			},
 			{
+				path: 'service-2',
+				element: <pages.Service2V />,
+			},
+			{
 				path: 'blockchain',
 				element: <pages.Blockchain />,
 			},

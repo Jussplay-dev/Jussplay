@@ -28,4 +28,5 @@ export const pages = {
 	UiUx: lazy(() => import('../pages/UIUX/index.jsx')),
 	Copywriting: lazy(() => import('../pages/Copywriting/index.jsx')),
 	ExperimentalPage3D: lazy(() => import('../pages/Test/index.jsx')),
+	Service2V: lazy(() => import('../pages/Service2V/index.jsx')),
 }
