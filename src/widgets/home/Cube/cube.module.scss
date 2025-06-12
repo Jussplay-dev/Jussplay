@@ -21,7 +21,7 @@
 
 		&_text {
 			margin: 100px auto 0 auto;
-			font-family: 'Space Grotesk';
+			font-family: 'SGrotReg';
 			font-weight: 400;
 			font-size: 24px;
 			line-height: 200%;
@@ -77,23 +77,6 @@
 		}
 	}
 
-	&_media_content {
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 20px;
-		z-index: 10;
-
-		img {
-			transition: transform 0.3s ease-in;
-			&:hover {
-				transform: scale(1.4, 1.4);
-			}
-		}
-	}
-
 	&_degrees {
 		position: relative;
 		display: flex;
@@ -111,7 +94,7 @@
 		h1 {
 			color: #eee6e6;
 			text-align: center;
-			font-family: 'Space Grotesk';
+			font-family: 'SGrotReg';
 			font-size: 17px;
 			font-style: normal;
 			font-weight: 400;
@@ -137,6 +120,24 @@
 		// animation: animated_main_title 10s ease-in-out infinite;
 
 		// will-change: background-posisiton, background-size;
+	}
+}
+
+// Media content
+.media_content {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	z-index: 10;
+
+	img {
+		transition: transform 0.3s ease-in;
+		&:hover {
+			transform: scale(1.4, 1.4);
+		}
 	}
 }
 
