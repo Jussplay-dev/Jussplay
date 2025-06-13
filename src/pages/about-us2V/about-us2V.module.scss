@@ -1,0 +1,275 @@
+$fontSGrotReg: 'SGrotReg';
+$fontUnbounded: 'Unbounded';
+
+.main_about_us {
+	position: relative;
+	padding: 80px 0;
+}
+
+// Title
+.title_different_about_us {
+	&_page {
+		position: absolute;
+		top: -1.5%;
+		left: -12%;
+		color: #f871e6;
+		font-family: $fontUnbounded, sans-serif;
+		font-size: 288px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 130%; /* 374.4px */
+		letter-spacing: -4.32px;
+		text-transform: uppercase;
+		z-index: 10;
+	}
+	&_scend_page {
+		position: absolute;
+		top: -1.5%;
+		right: -9.5%;
+		color: #c45974;
+		font-family: $fontUnbounded, sans-serif;
+		font-size: 288px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 130%; /* 374.4px */
+		letter-spacing: -4.32px;
+		text-transform: uppercase;
+		z-index: 10;
+	}
+}
+
+.about_us {
+	&_title {
+		color: #fff;
+		font-family: $fontSGrotReg, sans-serif;
+		font-size: 48px;
+		font-style: normal;
+		font-weight: 700;
+		line-height: 130%; /* 62.4px */
+	}
+
+	&_subtitle {
+		position: relative;
+
+		max-width: 435px;
+		margin-top: 350px;
+		margin-bottom: 289px;
+		z-index: 10;
+		h2 {
+			color: #fff;
+			font-family: $fontSGrotReg, sans-serif;
+			font-size: 48px;
+			font-style: normal;
+			font-weight: 700;
+			line-height: 130%; /* 62.4px */
+
+			margin-bottom: 20px;
+		}
+		h3 {
+			color: #9b98a4;
+			font-size: 17px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 130%; /* 22.1px */
+		}
+	}
+
+	&_wrapper_min_ellipse {
+		position: relative;
+	}
+	&_min_ellipse {
+		position: absolute;
+		top: -2.4%;
+		left: 20%;
+		z-index: 4;
+
+		width: 676.579px;
+		height: 1217.794px;
+		transform: rotate(30deg);
+		border: 1px solid #9b98a4;
+		border-radius: 70%;
+	}
+}
+
+.about_us_achievement {
+	&_row {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		margin-left: -11%;
+
+		margin-top: -115px;
+
+		gap: 340px;
+
+		position: relative;
+		z-index: 10;
+	}
+
+	&_item {
+		&:first-child {
+			flex: 0 0 405px;
+		}
+		h3 {
+			display: flex;
+			align-items: center;
+			gap: 44px;
+			color: #f871e6;
+			font-size: 100px;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 130%; /* 130px */
+			text-transform: uppercase;
+
+			margin-bottom: 20px;
+
+			&::before {
+				content: '';
+				width: 34px;
+				height: 34px;
+				background-color: #c45974;
+				border-radius: 100%;
+				margin-top: 35px;
+			}
+		}
+		h4 {
+			color: #fff;
+			font-size: 17px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 130%; /* 22.1px */
+			text-align: end;
+		}
+
+		&:last-child {
+			margin-left: -45%;
+		}
+	}
+}
+
+// About us body
+
+.about_us_body {
+	margin: 250px 0;
+	&_row {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 322px));
+		grid-template-rows: auto;
+		gap: 20px;
+	}
+	&_card {
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		h1,
+		p {
+			font-family: $fontSGrotReg, sans-serif;
+			font-style: normal;
+			line-height: 130%; /* 29.9px */
+		}
+		h1 {
+			padding: 20px 0;
+
+			color: #fff;
+			font-size: 23px;
+			font-weight: 700;
+		}
+		p {
+			color: #9b98a4;
+			font-size: 17px;
+			font-weight: 400;
+		}
+	}
+}
+
+// Approach
+.about_us_approach {
+	margin: 250px 0 100px 0;
+
+	&_row {
+		display: grid;
+		grid-template-columns: 350px auto;
+		grid-template-rows: auto;
+		gap: 140px;
+	}
+
+	&_item {
+		&_details {
+			h2 {
+				color: #9b98a4;
+				font-family: $fontSGrotReg;
+				font-size: 14px;
+				font-style: normal;
+				font-weight: 400;
+				line-height: 130%; /* 18.2px */
+				max-width: 550px;
+
+				margin-top: 26px;
+				margin-bottom: 136px;
+			}
+		}
+		&_details_list {
+			display: flex;
+			justify-content: space-between;
+			border-bottom: 1px solid #fff;
+
+			padding-bottom: 40px;
+			margin-bottom: 40px;
+
+			h3,
+			h4 {
+				color: #fff;
+				font-family: $fontSGrotReg;
+				font-size: 23px;
+				font-style: normal;
+				font-weight: 700;
+				line-height: 130%; /* 29.9px */
+			}
+		}
+	}
+}
+
+// Project
+
+.about_us_project {
+	&_title {
+		margin-bottom: 60px;
+	}
+
+	&_row {
+		display: grid;
+		grid-template-columns: 120px 891px;
+		gap: 247px;
+		place-content: center;
+
+		&:not(:last-child) {
+			margin-bottom: 60px;
+		}
+	}
+
+	&_item {
+		&:first-child {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 50px;
+		}
+
+		&_ellipse {
+			width: 94px;
+			height: 94px;
+			border: 1px solid #fff;
+			border-radius: 100%;
+		}
+		img {
+			width: 100%;
+			height: 520px;
+			border-radius: 20px;
+			object-fit: cover;
+		}
+	}
+}

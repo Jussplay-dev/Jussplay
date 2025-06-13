@@ -1,0 +1,140 @@
+.main {
+	&_contact_us {
+		position: relative;
+		padding: 80px 0;
+	}
+}
+
+.title_different_contact_us {
+	&_page {
+		position: absolute;
+		top: -1.5%;
+		left: -2.5%;
+		color: #f871e6;
+		font-family: 'Unbounded';
+		font-size: 288px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 130%; /* 374.4px */
+		letter-spacing: -4.32px;
+		text-transform: uppercase;
+		z-index: 10;
+	}
+	&_scend_page {
+		position: absolute;
+		top: -1.5%;
+		right: -53%;
+		color: #c45974;
+		font-family: 'Unbounded';
+		font-size: 288px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 130%; /* 374.4px */
+		letter-spacing: -4.32px;
+		text-transform: uppercase;
+		z-index: 10;
+	}
+}
+
+.contact_us {
+	&_section {
+		&_body {
+			margin-top: 400px;
+		}
+	}
+	&_body_row {
+		display: flex;
+		justify-content: space-between;
+		position: relative;
+		z-index: 10;
+	}
+	&_body_item {
+		h2,
+		h3,
+		h4 {
+			font-family: 'SGrotReg', sans-serif;
+			line-height: 130%; /* 62.4px */
+			font-style: normal;
+			margin-bottom: 40px;
+		}
+		h2 {
+			color: #fff;
+			font-size: 48px;
+			font-weight: 700;
+			font-style: normal;
+		}
+		h3 {
+			color: #9b98a4;
+
+			font-size: 17px;
+			font-weight: 400;
+			line-height: 130%; /* 22.1px */
+		}
+		h4 {
+			color: #9b98a4;
+
+			font-size: 17px;
+			font-weight: 400;
+		}
+
+		button,
+		span,
+		svg {
+			transition: transform 0.5s ease, fill 0.5s ease, color 0.5s ease;
+		}
+
+		button {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+
+			padding: 202px 130px;
+			border: 1px solid #fff;
+			border-radius: 50%;
+			background-color: transparent;
+			cursor: pointer;
+
+			position: relative;
+			z-index: 10;
+
+			span {
+				color: #e1d8e9;
+				font-family: 'SGrotReg';
+				font-size: 17px;
+				font-style: normal;
+				font-weight: 400;
+				line-height: 130%; /* 22.1px */
+			}
+
+			&:hover {
+				span {
+					color: #f871e6;
+				}
+			}
+
+			&:hover {
+				svg {
+					path {
+						fill: #f871e6;
+					}
+					transform: translateX(10px);
+				}
+			}
+		}
+	}
+}
+
+// Media content
+.media_content {
+	display: flex;
+	gap: 20px;
+	z-index: 20;
+	position: relative;
+
+	img {
+		transition: transform 0.3s ease-in;
+		&:hover {
+			transform: scale(1.4, 1.4);
+		}
+	}
+}

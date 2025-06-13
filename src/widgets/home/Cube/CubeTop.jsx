@@ -1,8 +1,8 @@
 import { CubeUi } from '../../../shared/ui/CubeUi'
 import { CubeDegrees } from './CubeDegrees'
 import { CubeLiner } from './CubeLiner'
-import { CubeMedia } from './CubeMedia'
 import { CubeTitle } from './CubeTitle'
+import { MediaContent } from './MediaContent'
 
 /* eslint-disable react/prop-types */
 export const CubeTop = ({ styles }) => {
@@ -13,7 +13,7 @@ export const CubeTop = ({ styles }) => {
 				<CubeUi />
 				<CubeTitle styles={styles} title={'More'} />
 			</div>
-			<CubeMedia styles={styles} />
+			<MediaContent styles={styles} />
 			<CubeLiner styles={styles} />
 			<CubeDegrees styles={styles} />
 		</div>

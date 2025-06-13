@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom'
-import DropdownContent from '../../components/headerDropdownContent'
+// import DropdownContent from '../../components/headerDropdownContent'
 import { HeaderArrowIcon } from './HeaderArrowIcon'
 import { HeaderLogo } from './HeaderLogo'
 
@@ -16,15 +16,15 @@ export const Navigation = ({
 			<ul className={styles.header_nav_item}>
 				<li onClick={onClick}>
 					<div className={styles.header_nav_item_link_arrow}>
-						<Link to='/service'>Services</Link>
+						<Link to='/service-2'>Services</Link>
 						<HeaderArrowIcon
 							onClick={onMouseEnterService}
 							activeIcon={activeDropdown}
 						/>
 					</div>
-					{activeDropdown === 'services' && (
+					{/* {activeDropdown === 'services' && (
 						<DropdownContent dropdownType='services' />
-					)}
+					)} */}
 				</li>
 				<li onClick={onClick}>
 					<div className={styles.header_nav_item_link_arrow}>
@@ -34,9 +34,9 @@ export const Navigation = ({
 							activeIcon={activeDropdown}
 						/>
 					</div>
-					{activeDropdown === 'blockchain' && (
+					{/* {activeDropdown === 'blockchain' && (
 						<DropdownContent dropdownType='blockchain' />
-					)}
+					)} */}
 				</li>
 			</ul>
 
@@ -44,10 +44,10 @@ export const Navigation = ({
 
 			<ul className={styles.header_nav_item}>
 				<li onClick={onClick}>
-					<Link to='/contactus'>Contact us</Link>
+					<Link to='/contact-us-2'>Contact us</Link>
 				</li>
 				<li onClick={onClick}>
-					<Link to='/aboutus'>About us</Link>
+					<Link to='/about-us-2'>About us</Link>
 				</li>
 			</ul>
 		</nav>
