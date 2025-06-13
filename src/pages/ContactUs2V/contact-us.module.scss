@@ -77,6 +77,12 @@
 			font-weight: 400;
 		}
 
+		button,
+		span,
+		svg {
+			transition: transform 0.5s ease, fill 0.5s ease, color 0.5s ease;
+		}
+
 		button {
 			display: flex;
 			align-items: center;
@@ -90,6 +96,7 @@
 
 			position: relative;
 			z-index: 10;
+
 			span {
 				color: #e1d8e9;
 				font-family: 'SGrotReg';
@@ -98,7 +105,20 @@
 				font-weight: 400;
 				line-height: 130%; /* 22.1px */
 			}
-			svg {
+
+			&:hover {
+				span {
+					color: #f871e6;
+				}
+			}
+
+			&:hover {
+				svg {
+					path {
+						fill: #f871e6;
+					}
+					transform: translateX(10px);
+				}
 			}
 		}
 	}

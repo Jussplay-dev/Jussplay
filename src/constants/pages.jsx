@@ -30,4 +30,5 @@ export const pages = {
 	ExperimentalPage3D: lazy(() => import('../pages/Test/index.jsx')),
 	Service2V: lazy(() => import('../pages/Service2V/index.jsx')),
 	NewContactUs: lazy(() => import('../pages/ContactUs2V/index.jsx')),
+	AboutUs: lazy(() => import('../pages/about-us2V/index.jsx')),
 }

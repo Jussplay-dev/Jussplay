@@ -211,13 +211,13 @@ export const CubeUi = () => {
 				)
 
 				if (isWithRangeLampSide) {
-					navigate('/service')
+					navigate('/service-2')
 				} else if (isWithRangeGameSide) {
 					navigate('/blockchain')
 				} else if (isWithRangeLetterPSide) {
-					navigate('/contact-us')
+					navigate('/contact-us-2')
 				} else if (isWithRangeLetterJSide) {
-					navigate('/about-us')
+					navigate('/about-us-2')
 				} else if (faceIndex === 3347 || faceIndex === 3348) {
 					navigate('/')
 				} else if (isWithRangeLetterDSide) {
