@@ -8,7 +8,9 @@ import transition from '../../pageTransition'
 import { WrapperPage } from '../../shared/ui/WrapperContainer'
 // import { Header } from '../../widgets/Header2V/Header'
 // import { Intro } from './Intro'
-import { Cube } from '../../widgets/home/Cube/Cube'
+// import { Cube } from '../../widgets/home/Cube/Cube'
+import { Header } from '../../widgets/Header2V/Header'
+import { Intro } from './Intro'
 import stylesHome from './new-home.module.scss'
 import { SelectProject } from './SelectProject'
 import { TrustedBy } from './TrustedBy'
@@ -49,16 +51,16 @@ const Home2V = () => {
 	return (
 		// <CustomScroll>
 		<WrapperPage>
-			{/* <Header /> */}
+			<Header />
 			<main className={stylesHome.main}>
-				{/* <Intro
+				<Intro
 					logoLottieId={'logoLottie'}
 					introAboutId={'introAbout'}
 					sectionRef={introBodySectionRef}
 					visible={visible}
 					styles={stylesHome}
-				/> */}
-				<Cube />
+				/>
+				{/* <Cube /> */}
 				<SelectProject />
 				<ScrollSection />
 				<TrustedBy />

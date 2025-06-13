@@ -16,7 +16,7 @@ export const Navigation = ({
 			<ul className={styles.header_nav_item}>
 				<li onClick={onClick}>
 					<div className={styles.header_nav_item_link_arrow}>
-						<Link to='/service-2'>Services</Link>
+						<Link to='/service'>Services</Link>
 						<HeaderArrowIcon
 							onClick={onMouseEnterService}
 							activeIcon={activeDropdown}
@@ -28,7 +28,7 @@ export const Navigation = ({
 				</li>
 				<li onClick={onClick}>
 					<div className={styles.header_nav_item_link_arrow}>
-						<span>Blockchain</span>
+						<Link to={'/blockchain'}>Blockchain</Link>
 						<HeaderArrowIcon
 							onClick={onMouseEnterBlockchain}
 							activeIcon={activeDropdown}
@@ -44,10 +44,10 @@ export const Navigation = ({
 
 			<ul className={styles.header_nav_item}>
 				<li onClick={onClick}>
-					<Link to='/contact-us-2'>Contact us</Link>
+					<Link to='/contact-us'>Contact us</Link>
 				</li>
 				<li onClick={onClick}>
-					<Link to='/about-us-2'>About us</Link>
+					<Link to='/about-us'>About us</Link>
 				</li>
 			</ul>
 		</nav>
