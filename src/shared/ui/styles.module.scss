@@ -51,7 +51,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: #1e1e1e;
+	background-color: #000000;
 	padding: 80px 40px;
 	animation: fadeIn 0.5s ease-in-out;
 	transition: opacity 0.6s ease, transform 0.6s ease;
@@ -78,8 +78,9 @@
 }
 
 .text {
+	font-family: 'SGrotReg', sans-serif;
 	margin-top: 12px;
-	font-size: 1rem;
+	font-size: 80px;
 	color: #fff;
 	font-weight: 500;
 	animation: fadeIn 1s ease-in-out;

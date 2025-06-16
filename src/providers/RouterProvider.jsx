@@ -14,6 +14,8 @@ import { CustomScroll } from '../components/scroll/CustomScroll'
 import { pages } from '../constants/pages.jsx'
 import stylesError from '../pages/Error/errorPage.module.scss'
 
+// Todo: Add conditional WEBGL for weak devices
+
 const BubbleError = () => {
 	const error = useRouteError()
 	console.error(error)
@@ -42,6 +44,7 @@ const router = createBrowserRouter([
 		errorElement: <BubbleError />,
 		children: [
 			{
+				path: '',
 				element: <pages.Loader />,
 			},
 			{

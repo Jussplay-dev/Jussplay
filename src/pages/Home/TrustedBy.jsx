@@ -1,10 +1,10 @@
 import 'swiper/css'
-import { Autoplay } from 'swiper/modules'
+// import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { trustedByData } from '../../constants/home'
 import { Container } from '../../shared/ui/WrapperContainer'
 import styles from './new-home.module.scss'
-import { TrustedByColumn } from './TrustedByColumn'
+import { TrustedByColumn, TrustedByColumnMobile } from './TrustedByColumn'
 
 export const TrustedBy = () => {
 	return (
@@ -28,20 +28,25 @@ export const TrustedBy = () => {
 							disableOnInteraction: false,
 							reverseDirection: false,
 						}}
-						speed={1500}
-						modules={[Autoplay]}
+						speed={3000}
+						// modules={[Autoplay]}
 						loop={true}
 					>
-						{trustedByData.map((trustedBy, index) => (
-							<SwiperSlide key={trustedBy.id}>
-								<TrustedByColumn
-									image={trustedBy.image}
-									style={styles.trusted_by_column_mobile}
-									isFirst={index === 0}
-									isLast={index === trustedByData.length - 1}
-								/>
-							</SwiperSlide>
-						))}
+						<SwiperSlide>
+							<TrustedByColumnMobile style={styles} />
+						</SwiperSlide>
+						<SwiperSlide>
+							<TrustedByColumnMobile style={styles} />
+						</SwiperSlide>
+						<SwiperSlide>
+							<TrustedByColumnMobile style={styles} />
+						</SwiperSlide>
+						<SwiperSlide>
+							<TrustedByColumnMobile style={styles} />
+						</SwiperSlide>
+						<SwiperSlide>
+							<TrustedByColumnMobile style={styles} />
+						</SwiperSlide>
 					</Swiper>
 				</div>
 			</Container>
