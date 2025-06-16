@@ -7,13 +7,14 @@ export const AppLoader = ({
 	isReady,
 	handleTransitionEnd,
 }) => {
-	const borderRadius = progress >= 100 ? '50%' : '12px'
+	// const borderRadius = progress >= 100 ? '50%' : '12px'
 	return (
 		<div
 			className={`${styles.loaderWrapper} ${isDone ? styles.fadeOut : ''}`}
 			onTransitionEnd={handleTransitionEnd}
 		>
-			<div
+			{/* Loader Spinner */}
+			{/* <div
 				className={styles.spinner}
 				style={{
 					borderRadius,
@@ -21,9 +22,9 @@ export const AppLoader = ({
 						isReady ? progress : 1
 					}%, #222 ${isReady ? progress : 1}%)`,
 				}}
-			></div>
+			></div> */}
 			<span className={styles.text}>
-				{progress < 100 ? `Loading... ${isReady ? progress : 0}%` : 'Done!'}
+				{progress < 100 ? `${isReady ? progress : 0}%` : 'Done!'}
 			</span>
 		</div>
 	)

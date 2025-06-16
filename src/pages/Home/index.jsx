@@ -1,14 +1,14 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react-hooks/exhaustive-deps */
 // import { CustomScroll } from '../../../components/scroll/CustomScroll'
+// import { Header } from '../../widgets/Header2V/Header'
+// import { Intro } from './Intro'
+// import { Cube } from '../../widgets/home/Cube/Cube'
 import { useEffect, useRef, useState } from 'react'
 import Footer from '../../components/Footer'
 import ScrollSection from '../../components/ScrollSection'
 import transition from '../../pageTransition'
 import { WrapperPage } from '../../shared/ui/WrapperContainer'
-// import { Header } from '../../widgets/Header2V/Header'
-// import { Intro } from './Intro'
-// import { Cube } from '../../widgets/home/Cube/Cube'
 import { Header } from '../../widgets/Header2V/Header'
 import { Intro } from './Intro'
 import stylesHome from './new-home.module.scss'
@@ -46,6 +46,10 @@ const Home2V = () => {
 				observer.unobserve(introBodySectionRef.current)
 			}
 		}
+	}, [])
+
+	useEffect(() => {
+		localStorage.setItem('token', 'authorized')
 	}, [])
 
 	return (

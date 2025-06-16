@@ -1,33 +1,40 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as THREE from 'three'
 import JDPloader from '../../components/JDP/JDP'
 import { CustomScroll } from '../../components/scroll/CustomScroll'
 import transition from '../../pageTransition'
+import { useCheckVisited } from '../../shared/hooks/useCheckVisited'
 import styles from './loader.module.scss'
 
-function Loader({ onComplete }) {
-	const [loadPercentage, setLoadPercentage] = useState(0)
+const token = localStorage.getItem('token')
+
+// Maybe return props onCompleted
+function Loader() {
+	// const [loadPercentage, setLoadPercentage] = useState(0)
 	const [hidden, setHidden] = useState(false)
 	const [isLottiePlaying, setIsLottiePlaying] = useState(false)
 	const navigate = useNavigate()
 	const containerRef = useRef(null)
 	const audioRef = useRef(null)
 
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setLoadPercentage(prev => {
-				if (prev >= 100) {
-					clearInterval(interval)
-					return 100
-				}
-				return prev + 1
-			})
-		}, 50)
+	// Make custom hook for auth
+	useCheckVisited(token, navigate)
 
-		return () => clearInterval(interval)
-	}, [])
+	// useEffect(() => {
+	// 	const interval = setInterval(() => {
+	// 		setLoadPercentage(prev => {
+	// 			if (prev >= 100) {
+	// 				clearInterval(interval)
+	// 				return 100
+	// 			}
+	// 			return prev + 1
+	// 		})
+	// 	}, 50)
+
+	// 	return () => clearInterval(interval)
+	// }, [])
 
 	// Создаём «взрыв» точек через THREE.js
 	const initiateExplosion = () => {
@@ -139,9 +146,9 @@ function Loader({ onComplete }) {
 		initiateExplosion()
 
 		// Сразу говорим RootLayout, что лоадер главной страницы «закончился»
-		if (typeof onComplete === 'function') {
-			onComplete()
-		}
+		// if (typeof onComplete === 'function') {
+		// 	onComplete()
+		// }
 
 		// Через 4500 мс переходим на '/home'
 		setTimeout(() => {
@@ -160,18 +167,18 @@ function Loader({ onComplete }) {
 						alignItems: 'center',
 					}}
 				>
-					{loadPercentage === 100 ? (
-						// JDPloader — твоя Lottie-анимация
-						<JDPloader isPlaying={isLottiePlaying} />
-					) : (
+					{/* {loadPercentage === 100 ? ( */}
+					{/* // JDPloader — Lottie-анимация */}
+					<JDPloader isPlaying={isLottiePlaying} />
+					{/* ) : (
 						<div className={styles.loader_percent}>{loadPercentage}%</div>
-					)}
+					)} */}
 					{!hidden && (
 						<div
 							className={`${styles.loader_start} ${
-								loadPercentage === 100
-									? styles.loader_startActive
-									: styles.loader_startInactive
+								// loadPercentage === 100
+								styles.loader_startActive
+								// : styles.loader_startInactive
 							}`}
 							onClick={handleButtonClick}
 						>

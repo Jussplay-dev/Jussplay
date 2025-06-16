@@ -14,13 +14,16 @@ $contentFont: 'SGrotReg';
 		color: #eee6e6;
 		margin: 0;
 
-		background: linear-gradient(-45deg, #eee6e6, #000000, #eee6e6, #eee6e6);
-		background-size: 300%;
+		background: linear-gradient(90deg, #eee6e6, #000000, #eee6e6, #eee6e6);
+		background-size: 200%;
+		background-repeat: no-repeat;
+
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
-		animation: animated_main_title 10s ease-in-out infinite;
 
-		will-change: background-posisiton, background-size;
+		animation: animated_main_title 10s ease-in-out infinite alternate;
+
+		will-change: background-position;
 
 		@media (max-width: 480px) {
 			font-size: 88px;
@@ -233,6 +236,10 @@ $contentFont: 'SGrotReg';
 		text-transform: uppercase;
 		color: #fff;
 		text-align: center;
+
+		@media (max-width: 680px) {
+			margin-bottom: 100px;
+		}
 	}
 
 	&_row {
@@ -254,17 +261,16 @@ $contentFont: 'SGrotReg';
 		}
 	}
 
-	&_column,
-	&_column_mobile {
+	&_column {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		padding: 36.5px;
+		height: 160px;
 
 		border: 1px solid rgb(255, 255, 255);
 
 		img {
-			width: auto;
 			object-fit: contain;
 			max-width: 100%;
 			display: flex;
@@ -283,9 +289,31 @@ $contentFont: 'SGrotReg';
 			}
 		}
 
-		@media (max-width: 480px) {
+		// @media (max-width: 480px) {
+		// 	img {
+		// 		filter: none;
+		// 	}
+		// }
+	}
+	&_column_mobile {
+		display: flex;
+		height: 160px;
+		&_image {
 			img {
-				filter: none;
+				object-fit: contain;
+				max-width: 100%;
+				display: flex;
+				filter: grayscale(1);
+				aspect-ratio: 4/4;
+				height: 75px;
+				align-items: center;
+
+				transition: transform, filter, 0.9s ease 0s;
+
+				&:hover {
+					filter: none;
+					transform: scale(1.3);
+				}
 			}
 		}
 	}
@@ -314,20 +342,20 @@ $contentFont: 'SGrotReg';
 			border-left: none;
 		}
 
-		&_mobile {
-			border-top: none;
+		// &_mobile {
+		// 	border-top: none;
 
-			&:first-child {
-				border-left: none;
-			}
+		// 	&:first-child {
+		// 		border-left: none;
+		// 	}
 
-			&_item_first {
-				border-left: none;
-			}
+		// 	&_item_first {
+		// 		border-left: none;
+		// 	}
 
-			&_item_last {
-				border-right: none;
-			}
-		}
+		// 	&_item_last {
+		// 		border-right: none;
+		// 	}
+		// }
 	}
 }
