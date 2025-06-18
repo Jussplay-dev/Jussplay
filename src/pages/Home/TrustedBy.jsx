@@ -1,35 +1,10 @@
 import 'swiper/css'
+import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { trustedByData } from '../../constants/home'
 import { Container } from '../../shared/ui/WrapperContainer'
 import styles from './new-home.module.scss'
-import { TrustedByColumn } from './TrustedByColumn'
-
-const TrustedByTestSlider = ({ title }) => {
-	return (
-		<Swiper
-			direction='vertical'
-			slidesPerView={1}
-			autoHeight={false}
-			loop={true}
-			speed={4000}
-			style={{ height: 100 }}
-		>
-			<SwiperSlide>
-				<h1>{title}</h1>
-			</SwiperSlide>
-			<SwiperSlide>
-				<h1>{title}</h1>
-			</SwiperSlide>
-			<SwiperSlide>
-				<h1>{title}</h1>
-			</SwiperSlide>
-			<SwiperSlide>
-				<h1>{title}</h1>
-			</SwiperSlide>
-		</Swiper>
-	)
-}
+import { TrustedByColumn, TrustedByColumnMobile } from './TrustedByColumn'
 
 export const TrustedBy = () => {
 	return (
@@ -46,25 +21,25 @@ export const TrustedBy = () => {
 					))}
 				</div>
 				<div className={styles.trusted_by_row_mobile}>
-					{/* <TrustedByColumnMobile style={styles} /> */}
 					<Swiper
 						speed={3000}
 						loop={true}
 						slidesPerView={2.5}
 						spaceBetween={30}
+						modules={[Autoplay]}
+						autoplay={{
+							delay: 2500,
+							disableOnInteraction: false,
+						}}
+						autoHeight={false}
+						allowTouchMove={false}
+						style={{ height: 200 }}
 					>
-						<SwiperSlide>
-							<TrustedByTestSlider title={'test 1'} />
-						</SwiperSlide>
-						<SwiperSlide>
-							<TrustedByTestSlider title={'test 2'} />
-						</SwiperSlide>
-						<SwiperSlide>
-							<TrustedByTestSlider title={'test 3'} />
-						</SwiperSlide>
-						<SwiperSlide>
-							<TrustedByTestSlider title={'test 4'} />
-						</SwiperSlide>
+						{trustedByData.map(item => (
+							<SwiperSlide key={`vert-${item.id}`}>
+								<TrustedByColumnMobile styles={styles} data={trustedByData} />
+							</SwiperSlide>
+						))}
 					</Swiper>
 				</div>
 			</Container>

@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+// import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'
+// import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { faceIndexRange } from '../utils/faceIndexRange'
 import styles from './styles.module.scss'
 
@@ -48,7 +50,7 @@ export const CubeUi = () => {
 		const loader = new GLTFLoader()
 
 		loader.load(
-			'/cube.glb', // Убедитесь, что этот путь верен относительно вашей публичной/статической папки
+			'/models/cube.glb', // Убедитесь, что этот путь верен относительно вашей публичной/статической папки
 			gltf => {
 				loadedModel.current = gltf
 
@@ -56,7 +58,7 @@ export const CubeUi = () => {
 
 				console.log(loadedModel.current)
 
-				// gltf.traverse(child => {
+				// modelScene.traverse(child => {
 				// 	if (child.isMesh) {
 				// 		// Устанавливаем материал для всех мешей модели
 				// 		// side: THREE.DoubleSide помогает рендерить обе стороны полигонов,
@@ -85,7 +87,8 @@ export const CubeUi = () => {
 					sizeLoadedModel1,
 					sizeLoadedModel2,
 					sizeLoadedModel3
-				) // Уменьшаем модель в 100 раз
+				)
+				// Уменьшаем модель в 100 раз
 
 				// Центрируем модель в начале координат
 				const box = new THREE.Box3().setFromObject(modelScene)
@@ -268,3 +271,36 @@ export const CubeUi = () => {
 
 	return <div ref={containerCubeRef} className={styles.wrapper_cube3d}></div>
 }
+
+// const mtlLoader = new MTLLoader()
+// mtlLoader.setPath('/models/') // Путь к .mtl файлу
+// mtlLoader.load('Cube.mtl', materials => {
+// 	materials.preload()
+
+// 	const objLoader = new OBJLoader()
+// 	objLoader.setMaterials(materials)
+// 	objLoader.setPath('/models/') // Путь к .obj файлу
+// 	objLoader.load('Cube.obj', object => {
+// 		if (window.innerWidth <= 768) {
+// 			setWidthCubeCamera(1.2)
+// 		} else if (window.innerWidth <= 480) {
+// 			setWidthCubeCamera(1)
+// 		}
+
+// 		const sizeLoadedModel1 = widthCubeCamera
+// 		const sizeLoadedModel2 = widthCubeCamera
+// 		const sizeLoadedModel3 = widthCubeCamera
+
+// 		object.scale.set(sizeLoadedModel1, sizeLoadedModel2, sizeLoadedModel3)
+
+// 		scene.add(object)
+// 		loadedModel.current = object
+
+// 		const box = new THREE.Box3().setFromObject(object)
+// 		const center = new THREE.Vector3()
+// 		box.getCenter(center)
+// 		object.position.sub(center)
+
+// 		console.log('3D модель с .mtl успешно загружена')
+// 	})
+// })

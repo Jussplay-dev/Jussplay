@@ -1,90 +1,39 @@
 /* eslint-disable react/prop-types */
-import 'swiper/css'
+
+import { useMemo } from 'react'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { trustedByData } from '../../constants/home'
-
-export const TrustedByColumnMobile = ({ style }) => {
+export const TrustedByColumnMobile = ({ styles, data }) => {
+	const autoplayDelay = useMemo(
+		() => Math.floor(200 + Math.random() * 1800),
+		[]
+	)
 	return (
 		<Swiper
-			// modules={[Autoplay]}
-			// autoplay={{
-			// 	delay: 0,
-			// 	disableOnInteraction: false,
-			// }}
-			speed={3000}
-			loop={true}
-			// allowTouchMove={false}
-			slidesPerView={2.5}
-			spaceBetween={30}
+			modules={[Autoplay]}
+			direction='vertical'
+			slidesPerView={1}
 			autoHeight={false}
+			allowTouchMove={false}
+			autoplay={{
+				delay: autoplayDelay,
+				disableOnInteraction: false,
+			}}
+			speed={5000}
+			style={{ height: 160 }}
 		>
-			<SwiperSlide>
-				<div
-					className={style.trusted_by_column_mobile_vertical_slider_container}
-				>
-					<Swiper
-						modules={[Autoplay]}
-						direction='vertical'
-						slidesPerView={1}
-						autoHeight={false}
-						loop={true}
-						speed={4000}
-						spaceBetween={30}
-						autoplay={{
-							delay: 0,
-							disableOnInteraction: false,
-						}}
-						// allowTouchMove={false}
+			{data?.map(dataTrustedBy => (
+				<SwiperSlide key={dataTrustedBy.id}>
+					<div
+						className={
+							styles.trusted_by_column_mobile_vertical_slider_container
+						}
 					>
-						{trustedByData?.map(trustedMobile => (
-							<SwiperSlide
-								key={trustedMobile.id}
-								className={style.trusted_by_column_mobile_vertical_slider_image}
-							>
-								<div className={style.trusted_by_column_mobile_vertical_image}>
-									<img
-										src={trustedMobile.image}
-										alt={`slide-number-${trustedMobile.id}-image-${trustedMobile.image}`}
-									/>
-								</div>
-							</SwiperSlide>
-						))}
-					</Swiper>
-				</div>
-			</SwiperSlide>
-			<SwiperSlide>
-				<div
-					className={style.trusted_by_column_mobile_vertical_slider_container}
-				>
-					<Swiper
-						modules={[Autoplay]}
-						direction='vertical'
-						slidesPerView={1}
-						loop={true}
-						speed={4000}
-						autoHeight={false}
-						autoplay={{
-							delay: 0,
-							disableOnInteraction: false,
-						}}
-						// allowTouchMove={false}
-						spaceBetween={30}
-					>
-						{trustedByData?.map(trustedMobile => (
-							<SwiperSlide key={trustedMobile.id} style={{ height: 160 }}>
-								<div className={style.trusted_by_column_mobile_vertical_image}>
-									<img
-										src={trustedMobile.image}
-										alt={`slide-number-${trustedMobile.id}-image-${trustedMobile.image}`}
-									/>
-								</div>
-							</SwiperSlide>
-						))}
-					</Swiper>
-				</div>
-			</SwiperSlide>
+						<img src={dataTrustedBy.image} alt={dataTrustedBy.image} />
+					</div>
+				</SwiperSlide>
+			))}
 		</Swiper>
 	)
 }
