@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as THREE from 'three'
-import { OBJLoader } from 'three/addons/loaders/OBJLoader.js'
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+// import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'
+// import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { faceIndexRange } from '../utils/faceIndexRange'
 import styles from './styles.module.scss'
 
@@ -11,6 +13,7 @@ export const CubeUi = () => {
 	const containerCubeRef = useRef(null)
 	const loadedModel = useRef(null)
 	const navigate = useNavigate()
+	const [widthCubeCamera, setWidthCubeCamera] = useState(1.4)
 
 	useEffect(() => {
 		if (!containerCubeRef.current) return
@@ -44,50 +47,61 @@ export const CubeUi = () => {
 		containerCubeRef.current.appendChild(renderer.domElement)
 
 		// 4. Загрузка 3D-модели
-		const loader = new OBJLoader()
+		const loader = new GLTFLoader()
 
 		loader.load(
-			'/JPD-Static1.obj', // Убедитесь, что этот путь верен относительно вашей публичной/статической папки
-			obj => {
-				loadedModel.current = obj
+			'/models/cube.glb', // Убедитесь, что этот путь верен относительно вашей публичной/статической папки
+			gltf => {
+				loadedModel.current = gltf
 
-				obj.traverse(child => {
-					if (child.isMesh) {
-						// Устанавливаем материал для всех мешей модели
-						// side: THREE.DoubleSide помогает рендерить обе стороны полигонов,
-						// что полезно, если нормали модели смотрят в "неправильную" сторону
-						child.material = new THREE.MeshBasicMaterial({
-							color: 'red',
-							side: THREE.DoubleSide,
-						})
-					}
-				})
+				const modelScene = gltf.scene
+
+				console.log(loadedModel.current)
+
+				// modelScene.traverse(child => {
+				// 	if (child.isMesh) {
+				// 		// Устанавливаем материал для всех мешей модели
+				// 		// side: THREE.DoubleSide помогает рендерить обе стороны полигонов,
+				// 		// что полезно, если нормали модели смотрят в "неправильную" сторону
+				// 		child.material = new THREE.MeshBasicMaterial({
+				// 			side: THREE.DoubleSide,
+				// 		})
+				// 	}
+				// })
 
 				// *** ИЗМЕНЕНО: Масштабируем модель ***
 				// Это самый важный шаг. Модели часто импортируются с огромными или очень маленькими размерами.
 				// Начните с очень маленького масштаба (например, 0.01 или 0.001) и увеличивайте его.
-				const sizeLoadedModel1 = 0.013
-				const sizeLoadedModel2 = 0.013
-				const sizeLoadedModel3 = 0.013
 
-				loadedModel.current.scale.set(
+				if (window.innerWidth <= 768) {
+					setWidthCubeCamera(1.2)
+				} else if (window.innerWidth <= 480) {
+					setWidthCubeCamera(1)
+				}
+
+				const sizeLoadedModel1 = widthCubeCamera
+				const sizeLoadedModel2 = widthCubeCamera
+				const sizeLoadedModel3 = widthCubeCamera
+
+				modelScene.scale.set(
 					sizeLoadedModel1,
 					sizeLoadedModel2,
 					sizeLoadedModel3
-				) // Уменьшаем модель в 100 раз
+				)
+				// Уменьшаем модель в 100 раз
 
 				// Центрируем модель в начале координат
-				const box = new THREE.Box3().setFromObject(loadedModel.current)
+				const box = new THREE.Box3().setFromObject(modelScene)
 				const center = new THREE.Vector3()
 				box.getCenter(center)
-				loadedModel.current.position.sub(center)
+				modelScene.position.sub(center)
 
-				scene.add(loadedModel.current)
+				scene.add(modelScene)
 
 				console.log('3D модель успешно загружена!', loadedModel.current)
 				// Выводим размер модели после масштабирования для отладки
 				const currentSize = new THREE.Vector3()
-				new THREE.Box3().setFromObject(loadedModel.current).getSize(currentSize)
+				new THREE.Box3().setFromObject(modelScene).getSize(currentSize)
 				console.log(
 					'Размер модели (после масштабирования):',
 					currentSize.x.toFixed(2),
@@ -96,6 +110,7 @@ export const CubeUi = () => {
 				)
 			},
 			xhr => {
+				console.error('error:', xhr)
 				const loadedXhrModel = (xhr.loaded / xhr.total) * 100
 
 				console.log(`Model loaded ${loadedXhrModel}%`)
@@ -147,7 +162,7 @@ export const CubeUi = () => {
 			raycaster.setFromCamera(mouse, camera)
 
 			const objectsToIntersect = loadedModel.current
-				? loadedModel.current.children
+				? loadedModel.current.scene.children
 				: []
 			const intersects = raycaster.intersectObjects(objectsToIntersect, true)
 
@@ -238,21 +253,54 @@ export const CubeUi = () => {
 			}
 			if (loadedModel.current) {
 				scene.remove(loadedModel.current)
-				loadedModel.current.traverse(child => {
-					if (child.isMesh) {
-						child.geometry.dispose()
-						// Удаляем материалы, если они не используются другими объектами
-						if (Array.isArray(child.material)) {
-							child.material.forEach(m => m.dispose())
-						} else {
-							child.material.dispose()
-						}
-					}
-				})
+				// loadedModel.current.scene.traverse(child => {
+				// 	if (child.isMesh) {
+				// 		child.geometry.dispose()
+				// 		// Удаляем материалы, если они не используются другими объектами
+				// 		if (Array.isArray(child.material)) {
+				// 			child.material.forEach(m => m.dispose())
+				// 		} else {
+				// 			child.material.dispose()
+				// 		}
+				// 	}
+				// })
 			}
 			controls.dispose()
 		}
-	}, [])
+	}, [navigate, widthCubeCamera])
 
 	return <div ref={containerCubeRef} className={styles.wrapper_cube3d}></div>
 }
+
+// const mtlLoader = new MTLLoader()
+// mtlLoader.setPath('/models/') // Путь к .mtl файлу
+// mtlLoader.load('Cube.mtl', materials => {
+// 	materials.preload()
+
+// 	const objLoader = new OBJLoader()
+// 	objLoader.setMaterials(materials)
+// 	objLoader.setPath('/models/') // Путь к .obj файлу
+// 	objLoader.load('Cube.obj', object => {
+// 		if (window.innerWidth <= 768) {
+// 			setWidthCubeCamera(1.2)
+// 		} else if (window.innerWidth <= 480) {
+// 			setWidthCubeCamera(1)
+// 		}
+
+// 		const sizeLoadedModel1 = widthCubeCamera
+// 		const sizeLoadedModel2 = widthCubeCamera
+// 		const sizeLoadedModel3 = widthCubeCamera
+
+// 		object.scale.set(sizeLoadedModel1, sizeLoadedModel2, sizeLoadedModel3)
+
+// 		scene.add(object)
+// 		loadedModel.current = object
+
+// 		const box = new THREE.Box3().setFromObject(object)
+// 		const center = new THREE.Vector3()
+// 		box.getCenter(center)
+// 		object.position.sub(center)
+
+// 		console.log('3D модель с .mtl успешно загружена')
+// 	})
+// })

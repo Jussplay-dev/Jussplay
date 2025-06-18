@@ -1,15 +1,13 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react-hooks/exhaustive-deps */
 // import { CustomScroll } from '../../../components/scroll/CustomScroll'
-// import { Header } from '../../widgets/Header2V/Header'
-// import { Intro } from './Intro'
-// import { Cube } from '../../widgets/home/Cube/Cube'
 import { useEffect, useRef, useState } from 'react'
 import Footer from '../../components/Footer'
 import ScrollSection from '../../components/ScrollSection'
 import transition from '../../pageTransition'
 import { WrapperPage } from '../../shared/ui/WrapperContainer'
 import { Header } from '../../widgets/Header2V/Header'
+import { Cube } from '../../widgets/home/Cube/Cube'
 import { Intro } from './Intro'
 import stylesHome from './new-home.module.scss'
 import { SelectProject } from './SelectProject'
@@ -55,16 +53,19 @@ const Home2V = () => {
 	return (
 		// <CustomScroll>
 		<WrapperPage>
-			<Header />
+			{location.pathname === '/home' && <Header />}
 			<main className={stylesHome.main}>
-				<Intro
-					logoLottieId={'logoLottie'}
-					introAboutId={'introAbout'}
-					sectionRef={introBodySectionRef}
-					visible={visible}
-					styles={stylesHome}
-				/>
-				{/* <Cube /> */}
+				{location.pathname === '/home' ? (
+					<Intro
+						logoLottieId={'logoLottie'}
+						introAboutId={'introAbout'}
+						sectionRef={introBodySectionRef}
+						visible={visible}
+						styles={stylesHome}
+					/>
+				) : (
+					<Cube />
+				)}
 				<SelectProject />
 				<ScrollSection />
 				<TrustedBy />
